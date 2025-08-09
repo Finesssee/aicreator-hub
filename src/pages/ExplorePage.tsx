@@ -31,24 +31,50 @@ const ExplorePage: React.FC = () => {
   const { data: apps = [], isLoading, error } = useQuery({
     queryKey: ['apps', searchQuery, selectedCategory, currentPage],
     queryFn: async () => {
-      let query = supabase
-        .from('apps')
-        .select('*')
-        .order('created_at', { ascending: false });
+      let query = supabase.from('apps').select('*').order('created_at', { ascending: false });
 
-      if (searchQuery) {
-        query = query.or(`name.ilike.%${searchQuery}%,tagline.ilike.%${searchQuery}%,description.ilike.%${searchQuery}%`);
+      // Apply filters based on search and category
+      if (searchQuery && selectedCategory) {
+        // Both search and category
+        const { data } = await query.eq('category', selectedCategory).range(
+          (currentPage - 1) * itemsPerPage, 
+          currentPage * itemsPerPage - 1
+        );
+        // Mock search filtering on client side for demo
+        const filtered = data?.filter(app => 
+          app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        ) || [];
+        return filtered;
+      } else if (searchQuery) {
+        // Search only
+        const { data } = await query.range(
+          (currentPage - 1) * itemsPerPage, 
+          currentPage * itemsPerPage - 1
+        );
+        // Mock search filtering on client side for demo
+        const filtered = data?.filter(app => 
+          app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          app.description?.toLowerCase().includes(searchQuery.toLowerCase())
+        ) || [];
+        return filtered;
+      } else if (selectedCategory) {
+        // Category only
+        const { data } = await query.eq('category', selectedCategory).range(
+          (currentPage - 1) * itemsPerPage, 
+          currentPage * itemsPerPage - 1
+        );
+        return data || [];
+      } else {
+        // No filters
+        const { data } = await query.range(
+          (currentPage - 1) * itemsPerPage, 
+          currentPage * itemsPerPage - 1
+        );
+        return data || [];
       }
-
-      if (selectedCategory) {
-        query = query.eq('category', selectedCategory);
-      }
-
-      const { data, error } = await query
-        .range((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage - 1);
-
-      if (error) throw error;
-      return data as App[];
     }
   });
 

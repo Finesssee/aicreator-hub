@@ -117,7 +117,7 @@ const AppDetailPage: React.FC = () => {
     <SEOWrapper 
       title={`${app.name} - ${app.tagline}`}
       description={app.description || app.tagline}
-      keywords={`${app.name}, ${app.category}, ${app.tech_stack?.join(', ')}, AI app`}
+      keywords={`${app.name}, ${app.category}, ${app.techStack?.join(', ')}, AI app`}
     >
       <div className="min-h-screen bg-background">
         <Navigation />
@@ -144,17 +144,17 @@ const AppDetailPage: React.FC = () => {
                 <div className="flex flex-wrap gap-2 mb-4">
                   <Badge variant="default">{app.category}</Badge>
                   <Badge variant="outline">{app.license}</Badge>
-                  {app.tech_stack?.slice(0, 3).map((tech) => (
+                  {app.techStack?.slice(0, 3).map((tech) => (
                     <Badge key={tech} variant="secondary">{tech}</Badge>
                   ))}
                 </div>
 
                 {/* Use Cases */}
-                {app.use_cases && app.use_cases.length > 0 && (
+                {app.useCases && app.useCases.length > 0 && (
                   <div className="mb-4">
                     <h3 className="text-sm font-medium text-muted-foreground mb-2">Use Cases</h3>
                     <div className="flex flex-wrap gap-1">
-                      {app.use_cases.map((useCase) => (
+                      {app.useCases.map((useCase) => (
                         <Badge key={useCase} variant="outline" className="text-xs">
                           {useCase}
                         </Badge>
@@ -273,10 +273,10 @@ const AppDetailPage: React.FC = () => {
                   </TabsList>
                   
                   <TabsContent value="readme" className="p-6">
-                    {app.readme_markdown ? (
+                    {app.readmeMarkdown ? (
                       <div className="prose prose-sm max-w-none">
                         <pre className="whitespace-pre-wrap text-sm">
-                          {app.readme_markdown}
+                          {app.readmeMarkdown}
                         </pre>
                       </div>
                     ) : (
@@ -296,11 +296,11 @@ const AppDetailPage: React.FC = () => {
                         </div>
                       )}
 
-                      {app.tech_stack && app.tech_stack.length > 0 && (
+                      {app.techStack && app.techStack.length > 0 && (
                         <div>
                           <h4 className="font-medium mb-2">Tech Stack</h4>
                           <div className="flex flex-wrap gap-2">
-                            {app.tech_stack.map((tech) => (
+                            {app.techStack.map((tech) => (
                               <Badge key={tech} variant="secondary">{tech}</Badge>
                             ))}
                           </div>
@@ -330,7 +330,7 @@ const AppDetailPage: React.FC = () => {
                         <h4 className="font-medium mb-2">Metadata</h4>
                         <div className="text-sm text-muted-foreground space-y-1">
                           <p><strong>License:</strong> {app.license}</p>
-                          <p><strong>Created:</strong> {new Date(app.created_at).toLocaleDateString()}</p>
+                          <p><strong>Created:</strong> {new Date(app.createdAt).toLocaleDateString()}</p>
                         </div>
                       </div>
                     </div>

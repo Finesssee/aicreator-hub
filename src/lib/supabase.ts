@@ -40,10 +40,10 @@ const mockApps: App[] = [
     tagline: 'High-quality text-to-image generation with SDXL',
     description: 'Generate stunning images from text prompts using Stable Diffusion XL. Perfect for creative projects, marketing materials, and artistic exploration.',
     category: 'Image & Video',
-    use_cases: ['Image Generation', 'Creative Design'],
-    tech_stack: ['Python', 'PyTorch', 'Replicate'],
+    useCases: ['Image Generation', 'Creative Design'],
+    techStack: ['Python', 'PyTorch', 'Replicate'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop',
     connector: {
       provider: 'replicate',
       owner: 'stability-ai',
@@ -55,7 +55,7 @@ const mockApps: App[] = [
         guidance_scale: 7.5
       }
     },
-    created_at: '2024-01-15T10:00:00Z'
+    createdAt: '2024-01-15T10:00:00Z'
   },
   {
     id: '2',
@@ -64,11 +64,11 @@ const mockApps: App[] = [
     tagline: 'Intelligent conversational AI powered by GPT-4',
     description: 'A sophisticated chat assistant that can help with various tasks including writing, analysis, coding, and creative projects.',
     category: 'Chat & Agents',
-    use_cases: ['Text Generation', 'Question Answering', 'Code Generation'],
-    tech_stack: ['OpenAI', 'JavaScript', 'React'],
+    useCases: ['Text Generation', 'Question Answering', 'Code Generation'],
+    techStack: ['OpenAI', 'JavaScript', 'React'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
-    created_at: '2024-01-14T15:30:00Z'
+    thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
+    createdAt: '2024-01-14T15:30:00Z'
   },
   {
     id: '3',
@@ -77,10 +77,10 @@ const mockApps: App[] = [
     tagline: 'Accurate speech-to-text transcription using OpenAI Whisper',
     description: 'Convert audio files to accurate text transcriptions using OpenAI\'s Whisper model. Supports multiple languages and audio formats.',
     category: 'Audio & Music',
-    use_cases: ['Speech Recognition', 'Translation'],
-    tech_stack: ['Python', 'OpenAI', 'Replicate'],
+    useCases: ['Speech Recognition', 'Translation'],
+    techStack: ['Python', 'OpenAI', 'Replicate'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=300&fit=crop',
+    thumbnailUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=300&fit=crop',
     connector: {
       provider: 'replicate',
       owner: 'openai',
@@ -91,7 +91,7 @@ const mockApps: App[] = [
         model: 'large-v2'
       }
     },
-    created_at: '2024-01-13T09:15:00Z'
+    createdAt: '2024-01-13T09:15:00Z'
   },
   {
     id: '4',
@@ -100,11 +100,11 @@ const mockApps: App[] = [
     tagline: 'AI-powered coding assistant for multiple programming languages',
     description: 'Get help with coding tasks, bug fixes, and code explanations using Meta\'s Code Llama model.',
     category: 'Developer Tools & Automation',
-    use_cases: ['Code Generation', 'Code Review'],
-    tech_stack: ['Python', 'Llama', 'Replicate'],
+    useCases: ['Code Generation', 'Code Review'],
+    techStack: ['Python', 'Llama', 'Replicate'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
-    created_at: '2024-01-12T14:20:00Z'
+    thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
+    createdAt: '2024-01-12T14:20:00Z'
   },
   {
     id: '5',
@@ -113,11 +113,11 @@ const mockApps: App[] = [
     tagline: 'Intelligent text summarization for articles and documents',
     description: 'Automatically generate concise summaries of long-form content, perfect for research and content curation.',
     category: 'Text & Content',
-    use_cases: ['Summarization', 'Data Analysis'],
-    tech_stack: ['Python', 'Transformers', 'Hugging Face'],
+    useCases: ['Summarization', 'Data Analysis'],
+    techStack: ['Python', 'Transformers', 'Hugging Face'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop',
-    created_at: '2024-01-11T11:45:00Z'
+    thumbnailUrl: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop',
+    createdAt: '2024-01-11T11:45:00Z'
   },
   {
     id: '6',
@@ -126,11 +126,11 @@ const mockApps: App[] = [
     tagline: 'Create original music compositions with AI',
     description: 'Generate unique musical compositions in various styles and genres using advanced AI models.',
     category: 'Creative & Fun',
-    use_cases: ['Audio Processing', 'Creative Design'],
-    tech_stack: ['Python', 'TensorFlow', 'Replicate'],
+    useCases: ['Audio Processing', 'Creative Design'],
+    techStack: ['Python', 'TensorFlow', 'Replicate'],
     license: 'MIT',
-    thumbnail_url: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
-    created_at: '2024-01-10T16:30:00Z'
+    thumbnailUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
+    createdAt: '2024-01-10T16:30:00Z'
   }
 ];
 

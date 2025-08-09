@@ -3,8 +3,19 @@ import { Link, useLocation } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 
-export const Navigation: React.FC = () => {
-  const location = useLocation();
+interface NavigationProps {
+  showCreateButton?: boolean;
+}
+
+export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true }) => {
+  // Use try-catch to handle Router context issues
+  let location;
+  try {
+    location = useLocation();
+  } catch {
+    // Fallback when not in Router context
+    location = { pathname: '/' };
+  }
 
   return (
     <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
@@ -26,7 +37,7 @@ export const Navigation: React.FC = () => {
             Explore
           </Link>
           
-          {location.pathname === '/explore' && (
+          {showCreateButton && location.pathname === '/explore' && (
             <Button variant="outline" size="sm" asChild>
               <Link to="/publish">
                 <Plus className="h-4 w-4 mr-2" />
