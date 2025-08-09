@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { AppCard, type App } from '@/components/ui/app-card';
+import { FolderSection } from '@/components/ui/folder-section';
+import { EnhancedPagination } from '@/components/ui/enhanced-pagination';
 import { SEOWrapper } from '@/components/seo/SEOWrapper';
 import { Navigation } from '@/components/layout/Navigation';
 import { Search, Filter, ChevronDown, Plus, TrendingUp } from 'lucide-react';
@@ -26,6 +28,7 @@ const ExplorePage: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 12;
+  const trendingItemsPerPage = 4;
 
   // Fetch apps from Supabase
   const { data: apps = [], isLoading, error } = useQuery({
@@ -96,8 +99,10 @@ const ExplorePage: React.FC = () => {
     // TODO: Implement actual actions
   }, []);
 
-  const trendingApps = apps.slice(0, 4);
-  const mainApps = apps.slice(4);
+  const trendingApps = apps.slice(0, trendingItemsPerPage);
+  const mainApps = apps.slice(trendingItemsPerPage);
+  const totalPages = Math.ceil(mainApps.length / itemsPerPage);
+  const paginatedMainApps = mainApps.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   if (error) {
     toast.error('Failed to load apps');
@@ -196,35 +201,22 @@ const ExplorePage: React.FC = () => {
 
           {/* Trending Section */}
           {trendingApps.length > 0 && (
-            <section className="mb-12">
-              <div className="relative">
-                {/* Folder Tab */}
-                <div className="absolute -top-4 left-6 z-10">
-                  <div className="bg-muted/30 border border-border rounded-t-lg px-4 py-2 flex items-center">
-                    <TrendingUp className="h-4 w-4 mr-2 text-primary" />
-                    <span className="text-sm font-medium text-foreground">Most Trendy AI Applications</span>
-                  </div>
-                </div>
-                
-                {/* Main Container */}
-                <div className="bg-muted/30 rounded-3xl pt-12 pb-8 px-8 border border-border">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {trendingApps.map((app) => (
-                      <AppCard
-                        key={app.id}
-                        app={app}
-                        onPreview={(app) => handleAppAction('Preview', app)}
-                        onClone={(app) => handleAppAction('Clone', app)}
-                        onRun={(app) => handleAppAction('Run', app)}
-                        onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                        onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                        onRemix={(app) => handleAppAction('Remix', app)}
-                      />
-                    ))}
-                  </div>
-                </div>
+            <FolderSection title="Most Trendy AI Applications">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {trendingApps.map((app) => (
+                  <AppCard
+                    key={app.id}
+                    app={app}
+                    onPreview={(app) => handleAppAction('Preview', app)}
+                    onClone={(app) => handleAppAction('Clone', app)}
+                    onRun={(app) => handleAppAction('Run', app)}
+                    onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
+                    onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
+                    onRemix={(app) => handleAppAction('Remix', app)}
+                  />
+                ))}
               </div>
-            </section>
+            </FolderSection>
           )}
 
           {/* Main Apps Grid */}
@@ -263,7 +255,7 @@ const ExplorePage: React.FC = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {mainApps.slice(0, 12).map((app) => (
+                {paginatedMainApps.map((app) => (
                   <AppCard
                     key={app.id}
                     app={app}
@@ -279,27 +271,14 @@ const ExplorePage: React.FC = () => {
             )}
           </section>
 
-          {/* Pagination */}
-          {mainApps.length > 0 && (
-            <div className="flex justify-center mt-12">
-              <div className="flex gap-2">
-                <Button 
-                  variant="outline" 
-                  disabled={currentPage === 1}
-                  onClick={() => setCurrentPage(currentPage - 1)}
-                  className="rounded-full"
-                >
-                  Previous
-                </Button>
-                <Button variant="outline" className="rounded-full">{currentPage}</Button>
-                <Button 
-                  variant="outline"
-                  onClick={() => setCurrentPage(currentPage + 1)}
-                  className="rounded-full"
-                >
-                  Next
-                </Button>
-              </div>
+          {/* Enhanced Pagination */}
+          {totalPages > 1 && (
+            <div className="mt-12">
+              <EnhancedPagination
+                currentPage={currentPage}
+                totalPages={totalPages}
+                onPageChange={setCurrentPage}
+              />
             </div>
           )}
         </main>

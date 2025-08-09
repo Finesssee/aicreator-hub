@@ -48,13 +48,13 @@ const mockApps: App[] = [
     id: '1',
     slug: 'stable-diffusion-xl',
     name: 'Stable Diffusion XL',
-    tagline: 'High-quality text-to-image generation with SDXL',
-    description: 'Generate stunning images from text prompts using Stable Diffusion XL. Perfect for creative projects, marketing materials, and artistic exploration.',
+    tagline: 'Professional-grade AI image generation platform',
+    description: 'Create stunning, high-resolution images from text descriptions using the latest Stable Diffusion XL model. Perfect for marketing campaigns, digital art, product mockups, and creative projects.',
     category: 'Image & Video',
-    useCases: ['Image Generation', 'Creative Design'],
-    techStack: ['Python', 'PyTorch', 'Replicate'],
+    useCases: ['Image Generation', 'Digital Art', 'Marketing Assets', 'Product Design'],
+    techStack: ['Python', 'PyTorch', 'Diffusers', 'Replicate'],
     license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=400&h=300&fit=crop',
+    thumbnailUrl: '/src/assets/app-sdxl.jpg',
     connector: {
       provider: 'replicate',
       owner: 'stability-ai',
@@ -67,33 +67,33 @@ const mockApps: App[] = [
       }
     },
     createdAt: '2024-01-15T10:00:00Z',
-    customizationCount: 1847
+    customizationCount: 2847
   },
   {
     id: '2',
     slug: 'gpt4-chat-assistant',
-    name: 'GPT-4 Chat Assistant',
-    tagline: 'Intelligent conversational AI powered by GPT-4',
-    description: 'A sophisticated chat assistant that can help with various tasks including writing, analysis, coding, and creative projects.',
+    name: 'GPT-4 Turbo Assistant',
+    tagline: 'Advanced conversational AI for complex problem solving',
+    description: 'Leverage the power of GPT-4 Turbo for sophisticated conversations, detailed analysis, creative writing, strategic planning, and complex reasoning tasks. Built with enterprise-grade security.',
     category: 'Chat & Agents',
-    useCases: ['Text Generation', 'Question Answering', 'Code Generation'],
-    techStack: ['OpenAI', 'JavaScript', 'React'],
+    useCases: ['Content Creation', 'Research Analysis', 'Customer Support', 'Strategic Planning'],
+    techStack: ['OpenAI API', 'Node.js', 'React', 'TypeScript'],
     license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
+    thumbnailUrl: '/src/assets/app-gpt4.jpg',
     createdAt: '2024-01-14T15:30:00Z',
-    customizationCount: 1456
+    customizationCount: 3156
   },
   {
     id: '3',
     slug: 'whisper-transcription',
-    name: 'Whisper Transcription',
-    tagline: 'Accurate speech-to-text transcription using OpenAI Whisper',
-    description: 'Convert audio files to accurate text transcriptions using OpenAI\'s Whisper model. Supports multiple languages and audio formats.',
+    name: 'Whisper Pro Transcription',
+    tagline: 'Enterprise speech-to-text with multi-language support',
+    description: 'Convert audio and video files to accurate text transcriptions using OpenAI\'s Whisper model. Supports 99+ languages, speaker identification, and real-time processing for professional workflows.',
     category: 'Audio & Music',
-    useCases: ['Speech Recognition', 'Translation'],
-    techStack: ['Python', 'OpenAI', 'Replicate'],
+    useCases: ['Meeting Transcription', 'Podcast Processing', 'Video Subtitles', 'Content Accessibility'],
+    techStack: ['Python', 'OpenAI Whisper', 'FastAPI', 'Redis'],
     license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=400&h=300&fit=crop',
+    thumbnailUrl: '/src/assets/app-whisper.jpg',
     connector: {
       provider: 'replicate',
       owner: 'openai',
@@ -105,37 +105,64 @@ const mockApps: App[] = [
       }
     },
     createdAt: '2024-01-13T09:15:00Z',
-    customizationCount: 1234
+    customizationCount: 1834
   },
   {
     id: '4',
     slug: 'code-llama-assistant',
-    name: 'Code Llama Assistant',
-    tagline: 'AI-powered coding assistant for multiple programming languages',
-    description: 'Get help with coding tasks, bug fixes, and code explanations using Meta\'s Code Llama model.',
+    name: 'Code Llama Pro',
+    tagline: 'Advanced AI coding companion for developers',
+    description: 'Accelerate your development workflow with Meta\'s Code Llama model. Get intelligent code suggestions, bug fixes, refactoring help, and detailed explanations across 20+ programming languages.',
     category: 'Developer Tools & Automation',
-    useCases: ['Code Generation', 'Code Review'],
-    techStack: ['Python', 'Llama', 'Replicate'],
+    useCases: ['Code Generation', 'Bug Detection', 'Code Review', 'Documentation'],
+    techStack: ['Python', 'Code Llama', 'Docker', 'VS Code Extension'],
     license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
+    thumbnailUrl: '/src/assets/app-code-llama.jpg',
     createdAt: '2024-01-12T14:20:00Z',
-    customizationCount: 987
+    customizationCount: 1587
   },
-  // Generate more apps for pagination
-  ...Array.from({ length: 44 }, (_, i) => ({
-    id: `${i + 5}`,
-    slug: `ai-app-${i + 5}`,
-    name: `AI App ${i + 5}`,
-    tagline: `Amazing AI application for ${categories[i % categories.length].toLowerCase()}`,
-    description: `This is an AI application that does amazing things with artificial intelligence technology. It leverages the latest in machine learning and AI to provide innovative solutions.`,
-    category: categories[i % categories.length],
-    useCases: ['AI Processing', 'Automation', 'Analysis'],
-    techStack: ['Python', 'JavaScript', 'React', 'AI/ML'],
-    license: 'MIT',
-    thumbnailUrl: '/placeholder.svg',
-    createdAt: new Date(2024, 0, 12 - Math.floor(i / 10), 10 + (i % 12), i % 60).toISOString(),
-    customizationCount: Math.floor(Math.random() * 1500) + 100
-  }))
+  // Generate more realistic apps for pagination
+  ...Array.from({ length: 44 }, (_, i) => {
+    const appTypes = [
+      { name: 'Voice Clone Studio', tagline: 'Create realistic voice clones with AI', category: 'Audio & Music' },
+      { name: 'Smart Document Parser', tagline: 'Extract data from documents using AI', category: 'Text & Content' },
+      { name: 'AI Video Editor', tagline: 'Automated video editing with machine learning', category: 'Image & Video' },
+      { name: 'Sentiment Analyzer Pro', tagline: 'Real-time sentiment analysis for social media', category: 'Text & Content' },
+      { name: 'Neural Style Transfer', tagline: 'Transform photos with artistic AI styles', category: 'Image & Video' },
+      { name: 'AutoCode Generator', tagline: 'Generate production-ready code from descriptions', category: 'Developer Tools & Automation' },
+      { name: 'AI Music Composer', tagline: 'Create original music with artificial intelligence', category: 'Audio & Music' },
+      { name: 'Smart Chatbot Builder', tagline: 'Build intelligent chatbots without coding', category: 'Chat & Agents' },
+      { name: 'Photo Restoration AI', tagline: 'Restore old photos using advanced AI', category: 'Image & Video' },
+      { name: 'Language Translator Plus', tagline: 'Multi-language translation with context awareness', category: 'Text & Content' },
+      { name: 'AI Game Generator', tagline: 'Create simple games using AI assistance', category: 'Creative & Fun' },
+      { name: 'Smart Email Assistant', tagline: 'AI-powered email composition and management', category: 'Developer Tools & Automation' }
+    ];
+    
+    const appType = appTypes[i % appTypes.length];
+    const techStacks = [
+      ['Python', 'TensorFlow', 'Flask'],
+      ['JavaScript', 'React', 'Node.js'],
+      ['Python', 'PyTorch', 'FastAPI'],
+      ['TypeScript', 'Next.js', 'Prisma'],
+      ['Python', 'Scikit-learn', 'Django'],
+      ['Go', 'Gin', 'PostgreSQL']
+    ];
+    
+    return {
+      id: `${i + 5}`,
+      slug: `${appType.name.toLowerCase().replace(/\s+/g, '-')}-${i + 5}`,
+      name: appType.name,
+      tagline: appType.tagline,
+      description: `Professional ${appType.name} powered by cutting-edge AI technology. Designed for businesses and creators who need reliable, scalable solutions with enterprise-grade performance and security.`,
+      category: appType.category,
+      useCases: ['AI Processing', 'Automation', 'Enterprise Solutions', 'Productivity'],
+      techStack: techStacks[i % techStacks.length],
+      license: 'MIT',
+      thumbnailUrl: '/placeholder.svg',
+      createdAt: new Date(2024, 0, 12 - Math.floor(i / 10), 10 + (i % 12), i % 60).toISOString(),
+      customizationCount: Math.floor(Math.random() * 2000) + 150
+    };
+  })
 ];
 
 // Mock Supabase-like API
