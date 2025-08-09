@@ -197,24 +197,31 @@ const ExplorePage: React.FC = () => {
           {/* Trending Section */}
           {trendingApps.length > 0 && (
             <section className="mb-12">
-              <div className="bg-muted/30 rounded-3xl p-8 border-none">
-                <div className="flex items-center mb-6">
-                  <TrendingUp className="h-5 w-5 mr-2 text-primary" />
-                  <h2 className="text-xl font-semibold text-foreground">Most Trendy AI Applications</h2>
+              <div className="relative">
+                {/* Folder Tab */}
+                <div className="absolute -top-4 left-6 z-10">
+                  <div className="bg-muted/30 border border-border rounded-t-lg px-4 py-2 flex items-center">
+                    <TrendingUp className="h-4 w-4 mr-2 text-primary" />
+                    <span className="text-sm font-medium text-foreground">Most Trendy AI Applications</span>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {trendingApps.map((app) => (
-                    <AppCard
-                      key={app.id}
-                      app={app}
-                      onPreview={(app) => handleAppAction('Preview', app)}
-                      onClone={(app) => handleAppAction('Clone', app)}
-                      onRun={(app) => handleAppAction('Run', app)}
-                      onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                      onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                      onRemix={(app) => handleAppAction('Remix', app)}
-                    />
-                  ))}
+                
+                {/* Main Container */}
+                <div className="bg-muted/30 rounded-3xl pt-12 pb-8 px-8 border border-border">
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {trendingApps.map((app) => (
+                      <AppCard
+                        key={app.id}
+                        app={app}
+                        onPreview={(app) => handleAppAction('Preview', app)}
+                        onClone={(app) => handleAppAction('Clone', app)}
+                        onRun={(app) => handleAppAction('Run', app)}
+                        onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
+                        onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
+                        onRemix={(app) => handleAppAction('Remix', app)}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>

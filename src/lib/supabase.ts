@@ -32,6 +32,16 @@ export interface Run {
   updated_at?: string;
 }
 
+// Categories array
+const categories = [
+  'Chat & Agents',
+  'Image & Video', 
+  'Audio & Music',
+  'Text & Content',
+  'Developer Tools & Automation',
+  'Creative & Fun'
+];
+
 // Mock data for demo
 const mockApps: App[] = [
   {
@@ -57,7 +67,7 @@ const mockApps: App[] = [
       }
     },
     createdAt: '2024-01-15T10:00:00Z',
-    customizationCount: 184
+    customizationCount: 1847
   },
   {
     id: '2',
@@ -71,7 +81,7 @@ const mockApps: App[] = [
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
     createdAt: '2024-01-14T15:30:00Z',
-    customizationCount: 126
+    customizationCount: 1456
   },
   {
     id: '3',
@@ -95,7 +105,7 @@ const mockApps: App[] = [
       }
     },
     createdAt: '2024-01-13T09:15:00Z',
-    customizationCount: 92
+    customizationCount: 1234
   },
   {
     id: '4',
@@ -109,36 +119,23 @@ const mockApps: App[] = [
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
     createdAt: '2024-01-12T14:20:00Z',
-    customizationCount: 67
+    customizationCount: 987
   },
-  {
-    id: '5',
-    slug: 'content-summarizer',
-    name: 'Content Summarizer',
-    tagline: 'Intelligent text summarization for articles and documents',
-    description: 'Automatically generate concise summaries of long-form content, perfect for research and content curation.',
-    category: 'Text & Content',
-    useCases: ['Summarization', 'Data Analysis'],
-    techStack: ['Python', 'Transformers', 'Hugging Face'],
+  // Generate more apps for pagination
+  ...Array.from({ length: 44 }, (_, i) => ({
+    id: `${i + 5}`,
+    slug: `ai-app-${i + 5}`,
+    name: `AI App ${i + 5}`,
+    tagline: `Amazing AI application for ${categories[i % categories.length].toLowerCase()}`,
+    description: `This is an AI application that does amazing things with artificial intelligence technology. It leverages the latest in machine learning and AI to provide innovative solutions.`,
+    category: categories[i % categories.length],
+    useCases: ['AI Processing', 'Automation', 'Analysis'],
+    techStack: ['Python', 'JavaScript', 'React', 'AI/ML'],
     license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop',
-    createdAt: '2024-01-11T11:45:00Z',
-    customizationCount: 53
-  },
-  {
-    id: '6',
-    slug: 'music-generator',
-    name: 'AI Music Generator',
-    tagline: 'Create original music compositions with AI',
-    description: 'Generate unique musical compositions in various styles and genres using advanced AI models.',
-    category: 'Creative & Fun',
-    useCases: ['Audio Processing', 'Creative Design'],
-    techStack: ['Python', 'TensorFlow', 'Replicate'],
-    license: 'MIT',
-    thumbnailUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
-    createdAt: '2024-01-10T16:30:00Z',
-    customizationCount: 38
-  }
+    thumbnailUrl: '/placeholder.svg',
+    createdAt: new Date(2024, 0, 12 - Math.floor(i / 10), 10 + (i % 12), i % 60).toISOString(),
+    customizationCount: Math.floor(Math.random() * 1500) + 100
+  }))
 ];
 
 // Mock Supabase-like API

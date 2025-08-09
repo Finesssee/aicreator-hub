@@ -37,14 +37,14 @@ export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true 
             Explore
           </Link>
           
-          {showCreateButton && location.pathname === '/explore' && (
-            <Button variant="outline" size="sm" asChild>
-              <Link to="/publish">
-                <Plus className="h-4 w-4 mr-2" />
-                Create
-              </Link>
+          <div className="flex items-center space-x-2">
+            <Button variant="login" size="sm">
+              Log in
             </Button>
-          )}
+            <Button variant="default" size="sm">
+              Sign up
+            </Button>
+          </div>
         </div>
       </div>
     </nav>
