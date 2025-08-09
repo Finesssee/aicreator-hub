@@ -131,20 +131,24 @@ const ExplorePage: React.FC = () => {
                 
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="outline" className="min-w-[120px]">
+                    <Button variant="secondary" className="min-w-[120px]">
                       <Filter className="h-4 w-4 mr-2" />
                       Filter
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-48">
                     <DropdownMenuItem onClick={() => setSelectedCategory(null)}>
-                      All Categories
+                      All Apps
                     </DropdownMenuItem>
-                    {categories.map((category) => (
-                      <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)}>
-                        {category}
-                      </DropdownMenuItem>
-                    ))}
+                    <DropdownMenuItem onClick={() => setSelectedCategory('trending')}>
+                      Trending
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedCategory('recent')}>
+                      Recent
+                    </DropdownMenuItem>
+                    <DropdownMenuItem onClick={() => setSelectedCategory('popular')}>
+                      Most Popular
+                    </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
 
@@ -155,6 +159,9 @@ const ExplorePage: React.FC = () => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-56 grid grid-cols-1 gap-1">
+                    <DropdownMenuItem onClick={() => setSelectedCategory(null)}>
+                      All Categories
+                    </DropdownMenuItem>
                     {categories.map((category) => (
                       <DropdownMenuItem key={category} onClick={() => setSelectedCategory(category)}>
                         {category}
