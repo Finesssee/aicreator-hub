@@ -16,39 +16,39 @@ export const EnhancedPagination: React.FC<EnhancedPaginationProps> = ({
   onPageChange,
   className
 }) => {
-  // Calculate page range to show
+  // Calculate page range to show (always 5 pages)
   const getPageRange = () => {
-    const delta = 2; // Number of pages to show on each side of current page
+    const pagesPerBlock = 5;
+    
+    // Calculate which block of 5 pages we should show
+    const currentBlock = Math.floor((currentPage - 1) / pagesPerBlock);
+    const start = currentBlock * pagesPerBlock + 1;
+    const end = Math.min(start + pagesPerBlock - 1, totalPages);
+    
     const range = [];
-    const rangeWithDots = [];
-
-    // Calculate start and end of the range
-    let start = Math.max(1, currentPage - delta);
-    let end = Math.min(totalPages, currentPage + delta);
-
-    // Adjust range to always show 5 pages when possible
-    if (end - start < 4) {
-      if (start === 1) {
-        end = Math.min(totalPages, start + 4);
-      } else if (end === totalPages) {
-        start = Math.max(1, end - 4);
-      }
-    }
-
-    // Create the range array
     for (let i = start; i <= end; i++) {
       range.push(i);
     }
-
+    
     return range;
+  };
+
+  const shouldShowPrevious = () => {
+    const pageRange = getPageRange();
+    return pageRange[0] > 1;
+  };
+
+  const shouldShowNext = () => {
+    const pageRange = getPageRange();
+    return pageRange[pageRange.length - 1] < totalPages;
   };
 
   const pageRange = getPageRange();
 
   return (
     <div className={cn("flex justify-center items-center gap-2", className)}>
-      {/* Previous Button - only show if not on first page */}
-      {currentPage > 1 && (
+      {/* Previous Button - show if there are pages before current sequence */}
+      {shouldShowPrevious() && (
         <Button
           variant="outline"
           size="sm"
@@ -72,8 +72,8 @@ export const EnhancedPagination: React.FC<EnhancedPaginationProps> = ({
         </Button>
       ))}
 
-      {/* Next Button - only show if not on last page */}
-      {currentPage < totalPages && (
+      {/* Next Button - show if there are pages after current sequence */}
+      {shouldShowNext() && (
         <Button
           variant="outline"
           size="sm"
