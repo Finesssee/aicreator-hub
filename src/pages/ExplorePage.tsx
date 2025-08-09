@@ -30,56 +30,29 @@ const ExplorePage: React.FC = () => {
   const itemsPerPage = 12;
   const trendingItemsPerPage = 4;
 
-  // Fetch apps from Supabase
-  const { data: apps = [], isLoading, error } = useQuery({
-    queryKey: ['apps', searchQuery, selectedCategory, currentPage],
+  // Fetch all apps from Supabase for proper pagination
+  const { data: allApps = [], isLoading, error } = useQuery({
+    queryKey: ['apps', selectedCategory],
     queryFn: async () => {
-      let query = supabase.from('apps').select('*').order('created_at', { ascending: false });
-
-      // Apply filters based on search and category
-      if (searchQuery && selectedCategory) {
-        // Both search and category
-        const { data } = await query.eq('category', selectedCategory).range(
-          (currentPage - 1) * itemsPerPage, 
-          currentPage * itemsPerPage - 1
-        );
-        // Mock search filtering on client side for demo
-        const filtered = data?.filter(app => 
-          app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          app.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          app.description?.toLowerCase().includes(searchQuery.toLowerCase())
-        ) || [];
-        return filtered;
-      } else if (searchQuery) {
-        // Search only
-        const { data } = await query.range(
-          (currentPage - 1) * itemsPerPage, 
-          currentPage * itemsPerPage - 1
-        );
-        // Mock search filtering on client side for demo
-        const filtered = data?.filter(app => 
-          app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          app.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          app.description?.toLowerCase().includes(searchQuery.toLowerCase())
-        ) || [];
-        return filtered;
-      } else if (selectedCategory) {
-        // Category only
-        const { data } = await query.eq('category', selectedCategory).range(
-          (currentPage - 1) * itemsPerPage, 
-          currentPage * itemsPerPage - 1
-        );
-        return data || [];
+      if (selectedCategory) {
+        const result = await supabase.from('apps').select('*').eq('category', selectedCategory);
+        return result.data || [];
       } else {
-        // No filters
-        const { data } = await query.range(
-          (currentPage - 1) * itemsPerPage, 
-          currentPage * itemsPerPage - 1
-        );
-        return data || [];
+        // Get all apps by using a large range
+        const result = await supabase.from('apps').select('*').range(0, 999);
+        return result.data || [];
       }
     }
   });
+
+  // Apply search filtering on client side
+  const filteredApps = searchQuery
+    ? allApps.filter(app =>
+        app.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        app.tagline.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        app.description?.toLowerCase().includes(searchQuery.toLowerCase())
+      )
+    : allApps;
 
   // Handle keyboard shortcut for search
   useEffect(() => {
@@ -99,8 +72,8 @@ const ExplorePage: React.FC = () => {
     // TODO: Implement actual actions
   }, []);
 
-  const trendingApps = apps.slice(0, trendingItemsPerPage);
-  const mainApps = apps.slice(trendingItemsPerPage);
+  const trendingApps = filteredApps.slice(0, trendingItemsPerPage);
+  const mainApps = filteredApps.slice(trendingItemsPerPage);
   const totalPages = Math.ceil(mainApps.length / itemsPerPage);
   const paginatedMainApps = mainApps.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
@@ -199,25 +172,27 @@ const ExplorePage: React.FC = () => {
             </div>
           )}
 
-          {/* Trending Section */}
-          {trendingApps.length > 0 && (
-            <FolderSection title="Most Trendy AI Applications">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {trendingApps.map((app) => (
-                  <AppCard
-                    key={app.id}
-                    app={app}
-                    onPreview={(app) => handleAppAction('Preview', app)}
-                    onClone={(app) => handleAppAction('Clone', app)}
-                    onRun={(app) => handleAppAction('Run', app)}
-                    onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                    onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                    onRemix={(app) => handleAppAction('Remix', app)}
-                  />
-                ))}
-              </div>
-            </FolderSection>
-          )}
+          {/* Trending Section with spacing */}
+          <div className="mt-8">
+            {trendingApps.length > 0 && (
+              <FolderSection title="Most Trendy AI Applications">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {trendingApps.map((app) => (
+                    <AppCard
+                      key={app.id}
+                      app={app}
+                      onPreview={(app) => handleAppAction('Preview', app)}
+                      onClone={(app) => handleAppAction('Clone', app)}
+                      onRun={(app) => handleAppAction('Run', app)}
+                      onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
+                      onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
+                      onRemix={(app) => handleAppAction('Remix', app)}
+                    />
+                  ))}
+                </div>
+              </FolderSection>
+            )}
+          </div>
 
           {/* Main Apps Grid */}
           <section>
@@ -237,7 +212,7 @@ const ExplorePage: React.FC = () => {
                   </Card>
                 ))}
               </div>
-            ) : apps.length === 0 ? (
+            ) : filteredApps.length === 0 ? (
               <div className="text-center py-20">
                 <h3 className="text-xl font-semibold mb-2">No apps found</h3>
                 <p className="text-muted-foreground mb-6">
