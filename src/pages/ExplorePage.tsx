@@ -197,30 +197,26 @@ const ExplorePage: React.FC = () => {
           {/* Trending Section */}
           {trendingApps.length > 0 && (
             <section className="mb-12">
-              <Card className="gradient-hero border-none soft-shadow">
-                <CardHeader>
-                  <CardTitle className="flex items-center text-foreground">
-                    <TrendingUp className="h-5 w-5 mr-2" />
-                    Most Trendy AI Applications
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {trendingApps.map((app) => (
-                      <AppCard
-                        key={app.id}
-                        app={app}
-                        onPreview={(app) => handleAppAction('Preview', app)}
-                        onClone={(app) => handleAppAction('Clone', app)}
-                        onRun={(app) => handleAppAction('Run', app)}
-                        onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                        onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                        onRemix={(app) => handleAppAction('Remix', app)}
-                      />
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
+              <div className="bg-muted/30 rounded-3xl p-8 border-none">
+                <div className="flex items-center mb-6">
+                  <TrendingUp className="h-5 w-5 mr-2 text-primary" />
+                  <h2 className="text-xl font-semibold text-foreground">Most Trendy AI Applications</h2>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {trendingApps.map((app) => (
+                    <AppCard
+                      key={app.id}
+                      app={app}
+                      onPreview={(app) => handleAppAction('Preview', app)}
+                      onClone={(app) => handleAppAction('Clone', app)}
+                      onRun={(app) => handleAppAction('Run', app)}
+                      onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
+                      onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
+                      onRemix={(app) => handleAppAction('Remix', app)}
+                    />
+                  ))}
+                </div>
+              </div>
             </section>
           )}
 
@@ -260,7 +256,7 @@ const ExplorePage: React.FC = () => {
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {mainApps.map((app) => (
+                {mainApps.slice(0, 12).map((app) => (
                   <AppCard
                     key={app.id}
                     app={app}
@@ -277,20 +273,22 @@ const ExplorePage: React.FC = () => {
           </section>
 
           {/* Pagination */}
-          {apps.length >= itemsPerPage && (
+          {mainApps.length > 0 && (
             <div className="flex justify-center mt-12">
               <div className="flex gap-2">
                 <Button 
                   variant="outline" 
                   disabled={currentPage === 1}
                   onClick={() => setCurrentPage(currentPage - 1)}
+                  className="rounded-full"
                 >
                   Previous
                 </Button>
-                <Button variant="outline">{currentPage}</Button>
+                <Button variant="outline" className="rounded-full">{currentPage}</Button>
                 <Button 
                   variant="outline"
                   onClick={() => setCurrentPage(currentPage + 1)}
+                  className="rounded-full"
                 >
                   Next
                 </Button>

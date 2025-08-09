@@ -17,6 +17,7 @@ export interface App {
   connector?: any;
   createdAt: string;
   updatedAt?: string;
+  customizationCount?: number;
 }
 
 export interface Run {
@@ -55,7 +56,8 @@ const mockApps: App[] = [
         guidance_scale: 7.5
       }
     },
-    createdAt: '2024-01-15T10:00:00Z'
+    createdAt: '2024-01-15T10:00:00Z',
+    customizationCount: 184
   },
   {
     id: '2',
@@ -68,7 +70,8 @@ const mockApps: App[] = [
     techStack: ['OpenAI', 'JavaScript', 'React'],
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=300&fit=crop',
-    createdAt: '2024-01-14T15:30:00Z'
+    createdAt: '2024-01-14T15:30:00Z',
+    customizationCount: 126
   },
   {
     id: '3',
@@ -91,7 +94,8 @@ const mockApps: App[] = [
         model: 'large-v2'
       }
     },
-    createdAt: '2024-01-13T09:15:00Z'
+    createdAt: '2024-01-13T09:15:00Z',
+    customizationCount: 92
   },
   {
     id: '4',
@@ -104,7 +108,8 @@ const mockApps: App[] = [
     techStack: ['Python', 'Llama', 'Replicate'],
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=400&h=300&fit=crop',
-    createdAt: '2024-01-12T14:20:00Z'
+    createdAt: '2024-01-12T14:20:00Z',
+    customizationCount: 67
   },
   {
     id: '5',
@@ -117,7 +122,8 @@ const mockApps: App[] = [
     techStack: ['Python', 'Transformers', 'Hugging Face'],
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1456324504439-367cee3b3c32?w=400&h=300&fit=crop',
-    createdAt: '2024-01-11T11:45:00Z'
+    createdAt: '2024-01-11T11:45:00Z',
+    customizationCount: 53
   },
   {
     id: '6',
@@ -130,7 +136,8 @@ const mockApps: App[] = [
     techStack: ['Python', 'TensorFlow', 'Replicate'],
     license: 'MIT',
     thumbnailUrl: 'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=400&h=300&fit=crop',
-    createdAt: '2024-01-10T16:30:00Z'
+    createdAt: '2024-01-10T16:30:00Z',
+    customizationCount: 38
   }
 ];
 

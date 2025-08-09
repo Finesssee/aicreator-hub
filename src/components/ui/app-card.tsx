@@ -21,6 +21,7 @@ export interface App {
   readmeMarkdown?: string;
   connector?: any;
   createdAt: string;
+  customizationCount?: number;
 }
 
 interface AppCardProps {
@@ -117,6 +118,13 @@ export const AppCard: React.FC<AppCardProps> = ({
               </Badge>
             ))}
           </div>
+          
+          {/* Customization Count */}
+          {app.customizationCount !== undefined && (
+            <div className="text-xs text-muted-foreground">
+              {app.customizationCount} customizations
+            </div>
+          )}
         </div>
       </CardContent>
     </Card>
