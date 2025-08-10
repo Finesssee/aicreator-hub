@@ -10,7 +10,9 @@
     "build": "vite build",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "api:install": "cd api && pip install -r requirements.txt",
+    "api:dev": "cd api && python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
