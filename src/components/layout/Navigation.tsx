@@ -34,7 +34,7 @@ export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true 
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
             <span className="text-primary-foreground font-bold text-lg">AI</span>
           </div>
-          <span className="font-bold text-xl">AppHub</span>
+          <span className="font-bold text-xl">Hublicate</span>
         </Link>
 
         <div className="flex items-center space-x-4">
