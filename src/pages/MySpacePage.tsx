@@ -6,7 +6,7 @@ import { Badge } from '@/components/ui/badge';
 import { FolderSection } from '@/components/ui/folder-section';
 import { SEOWrapper } from '@/components/seo/SEOWrapper';
 import { Navigation } from '@/components/layout/Navigation';
-import { ExternalLink, Share2, Play, Code, Sparkles, Plus } from 'lucide-react';
+import { ExternalLink, Share2, Play, Code, Sparkles, Plus, Star } from 'lucide-react';
 import { toast } from 'sonner';
 
 // Sample apps data
@@ -51,6 +51,7 @@ const myOriginalApps = [
 
 const MySpacePage: React.FC = () => {
   const [hoveredApp, setHoveredApp] = useState<number | null>(null);
+  const [activeCategory, setActiveCategory] = useState<'all' | 'original' | 'customized'>('all');
 
   const handleShare = (app: any, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -70,6 +71,12 @@ const MySpacePage: React.FC = () => {
     window.open(url, '_blank');
     toast.success(`Opening ${app.name} in ${editor}`);
   };
+
+  const filteredApps = [...myOriginalApps, ...myClonedApps].filter(app => {
+    if (activeCategory === 'original') return !app.originalApp;
+    if (activeCategory === 'customized') return !!app.originalApp;
+    return true;
+  });
 
   const AppCard = ({ app, showOriginal = false }: { app: any, showOriginal?: boolean }) => (
     <Card 
@@ -99,14 +106,20 @@ const MySpacePage: React.FC = () => {
           </div>
         )}
         
-        {/* Public badge */}
-        {app.isPublic && (
-          <div className="absolute top-3 left-3">
+        {/* Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          {app.isPublic && (
             <Badge variant="secondary" className="bg-green-100 text-green-800">
               Public
             </Badge>
-          </div>
-        )}
+          )}
+          {!app.originalApp && (
+            <Badge variant="secondary" className="bg-blue-100 text-blue-800 flex items-center gap-1">
+              <Star className="h-3 w-3" />
+              Original
+            </Badge>
+          )}
+        </div>
       </div>
       
       <CardContent className="p-4">
@@ -176,20 +189,47 @@ const MySpacePage: React.FC = () => {
               </p>
             </div>
 
-            <Button variant="create-filled" asChild>
-              <Link to="/publish">
-                <Plus className="h-4 w-4 mr-2" />
-                Create New App
-              </Link>
-            </Button>
+            <div className="flex gap-4 items-center">
+              {/* Category Filter Buttons */}
+              <div className="flex gap-2">
+                <Button
+                  variant={activeCategory === 'all' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveCategory('all')}
+                >
+                  All Apps
+                </Button>
+                <Button
+                  variant={activeCategory === 'original' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveCategory('original')}
+                >
+                  Original Work
+                </Button>
+                <Button
+                  variant={activeCategory === 'customized' ? 'default' : 'outline'}
+                  size="sm"
+                  onClick={() => setActiveCategory('customized')}
+                >
+                  Customized Apps
+                </Button>
+              </div>
+
+              <Button variant="create-filled" asChild>
+                <Link to="/publish">
+                  <Plus className="h-4 w-4 mr-2" />
+                  Create New App
+                </Link>
+              </Button>
+            </div>
           </div>
 
           {/* All Apps in One Space */}
           <div className="mt-8">
-            {[...myOriginalApps, ...myClonedApps].length > 0 ? (
+            {filteredApps.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {/* Sort by recent work first - using reverse order to show newer items first */}
-                {[...myOriginalApps, ...myClonedApps]
+                {filteredApps
                   .sort((a, b) => b.id - a.id)
                   .map((app) => (
                     <AppCard key={app.id} app={app} showOriginal={!!app.originalApp} />
