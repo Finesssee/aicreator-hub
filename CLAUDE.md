@@ -117,3 +117,11 @@ The application is deployed on Vercel with:
 - API routes support via Vercel Functions
 - Environment variables configuration
 - Production URL: Set in Vercel dashboard
+
+## Authentication Troubleshooting & Deployment Notes
+
+- **Production Ready**: The authentication flow has been fixed and is now fully functional for production deployments on Vercel.
+- **Correct Navigation**: The Login and Signup buttons in the navigation bar now correctly direct users to the `/auth` page.
+- **Local Auth Server**: During local development (`npm run dev:all`), the dedicated authentication server runs on `http://localhost:5001`.
+- **Vercel Deployment**: The Vercel deployment is correctly configured. The API route at `/api/auth/[...all]` handles all authentication requests, and the `vercel.json` file includes the necessary rewrites to support client-side routing and the auth endpoint.
+- **Authentication Stack**: The app uses `better-auth` for authentication, backed by a SQLite database for user management.
