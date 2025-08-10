@@ -9,7 +9,6 @@ import { FolderSection } from '@/components/ui/folder-section';
 import { EnhancedPagination } from '@/components/ui/enhanced-pagination';
 import { SEOWrapper } from '@/components/seo/SEOWrapper';
 import { Navigation } from '@/components/layout/Navigation';
-import { MySpace } from '@/components/ui/my-space';
 import { Search, Filter, ChevronDown, Plus, TrendingUp } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
@@ -92,9 +91,6 @@ const ExplorePage: React.FC = () => {
         <Navigation />
         
         <main className="container mx-auto px-4 py-8">
-          <div className="flex gap-8">
-            {/* Main content */}
-            <div className="flex-1">
           {/* Header */}
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-8">
             <div className="mb-6 lg:mb-0">
@@ -260,16 +256,6 @@ const ExplorePage: React.FC = () => {
               />
             </div>
           )}
-          </div>
-
-          {/* My Space sidebar */}
-          <aside className="w-80 flex-shrink-0">
-            <div className="sticky top-24">
-              <h2 className="text-xl font-semibold mb-4">My Space</h2>
-              <MySpace />
-            </div>
-          </aside>
-          </div>
         </main>
       </div>
     </SEOWrapper>
