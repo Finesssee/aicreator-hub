@@ -176,7 +176,7 @@ const ExplorePage: React.FC = () => {
                 <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#E9F7F2' }}>
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-gray-800">Healthcare Applications</h2>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800 border border-gray-300 hover:border-primary hover:text-primary transition-colors">
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-white border border-gray-300 hover:border-primary hover:bg-primary transition-colors">
                       <ArrowRight className="h-4 w-4 mr-2" />
                       View More
                     </Button>
@@ -207,7 +207,7 @@ const ExplorePage: React.FC = () => {
                 <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#E9EDF5' }}>
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-gray-800">Finance Applications</h2>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800 border border-gray-300 hover:border-primary hover:text-primary transition-colors">
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-white border border-gray-300 hover:border-primary hover:bg-primary transition-colors">
                       <ArrowRight className="h-4 w-4 mr-2" />
                       View More
                     </Button>
@@ -238,7 +238,7 @@ const ExplorePage: React.FC = () => {
                 <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#F5F5F5' }}>
                   <div className="flex justify-between items-center mb-6">
                     <h2 className="text-2xl font-bold text-gray-800">Administration Applications</h2>
-                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800 border border-gray-300 hover:border-primary hover:text-primary transition-colors">
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-white border border-gray-300 hover:border-primary hover:bg-primary transition-colors">
                       <ArrowRight className="h-4 w-4 mr-2" />
                       View More
                     </Button>

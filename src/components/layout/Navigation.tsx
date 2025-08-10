@@ -47,15 +47,6 @@ export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true 
             Explore
           </Link>
           
-          <Link 
-            to="/my-space" 
-            className={`text-sm font-medium transition-colors hover:text-primary ${
-              location.pathname === '/my-space' ? 'text-primary' : 'text-muted-foreground'
-            }`}
-          >
-            My Space
-          </Link>
-          
           <div className="flex items-center space-x-2">
             {isPending ? (
               <div className="h-8 w-8 animate-pulse bg-muted rounded-full" />
@@ -91,24 +82,7 @@ export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true 
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-            ) : (
-              <>
-                <Button 
-                  variant="ghost" 
-                  size="sm"
-                  onClick={() => navigate('/auth')}
-                >
-                  Log in
-                </Button>
-                <Button 
-                  variant="default" 
-                  size="sm"
-                  onClick={() => navigate('/auth')}
-                >
-                  Sign up
-                </Button>
-              </>
-            )}
+            ) : null}
           </div>
         </div>
       </div>
