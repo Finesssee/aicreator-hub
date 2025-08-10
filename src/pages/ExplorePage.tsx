@@ -5,14 +5,16 @@ import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { AppCard, type App } from '@/components/ui/app-card';
+import { IndustryAppCard } from '@/components/ui/industry-app-card';
 import { FolderSection } from '@/components/ui/folder-section';
 import { EnhancedPagination } from '@/components/ui/enhanced-pagination';
 import { SEOWrapper } from '@/components/seo/SEOWrapper';
 import { Navigation } from '@/components/layout/Navigation';
-import { Search, Filter, ChevronDown, Plus, TrendingUp } from 'lucide-react';
+import { Search, Filter, ChevronDown, Plus, ArrowRight } from 'lucide-react';
 import { useQuery } from '@tanstack/react-query';
 import { supabase } from '@/lib/supabase';
 import { toast } from 'sonner';
+import { healthcareApps, financeApps, administrationApps } from '@/data/industryApps';
 
 const categories = [
   'Chat & Agents',
@@ -71,11 +73,6 @@ const ExplorePage: React.FC = () => {
     toast.success(`${action} action for ${app.name}`);
     // TODO: Implement actual actions
   }, []);
-
-  const trendingApps = filteredApps.slice(0, trendingItemsPerPage);
-  const mainApps = filteredApps.slice(trendingItemsPerPage);
-  const totalPages = Math.ceil(mainApps.length / itemsPerPage);
-  const paginatedMainApps = mainApps.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
   if (error) {
     toast.error('Failed to load apps');
@@ -172,90 +169,98 @@ const ExplorePage: React.FC = () => {
             </div>
           )}
 
-          {/* Trending Section with spacing */}
+          {/* Healthcare Section */}
           <div className="mt-16">
-            {trendingApps.length > 0 && (
-              <FolderSection title="Most Trendy AI Applications" variant="trending">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {trendingApps.map((app) => (
-                    <AppCard
-                      key={app.id}
-                      app={app}
-                      onPreview={(app) => handleAppAction('Preview', app)}
-                      onClone={(app) => handleAppAction('Clone', app)}
-                      onRun={(app) => handleAppAction('Run', app)}
-                      onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                      onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                      onRemix={(app) => handleAppAction('Remix', app)}
-                    />
-                  ))}
+            <div className="mb-12">
+              <div className="relative">
+                <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#E9F7F2' }}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800">Healthcare Applications</h2>
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
+                      <ArrowRight className="h-4 w-4 mr-2" />
+                      View More
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {healthcareApps.slice(0, 12).map((app) => (
+                      <IndustryAppCard
+                        key={app.id}
+                        app={app}
+                        onPreview={(app) => handleAppAction('Preview', app)}
+                        onCustomize={(app) => handleAppAction('Customize', app)}
+                        onRunDeploy={(app) => handleAppAction('Run/Deploy', app)}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </FolderSection>
-            )}
+                <div className="absolute -top-8 left-8 rounded-t-xl px-6 py-2 min-w-fit z-10" style={{ backgroundColor: '#E9F7F2' }}>
+                  <span className="text-sm font-medium text-gray-600 whitespace-nowrap">Healthcare</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          {/* Main Apps Grid */}
-          <section>
-            {isLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {Array.from({ length: 12 }).map((_, i) => (
-                  <Card key={i} className="animate-pulse">
-                    <div className="aspect-video bg-muted rounded-t-lg" />
-                    <CardContent className="p-4">
-                      <div className="h-5 bg-muted rounded mb-2" />
-                      <div className="h-4 bg-muted rounded mb-3" />
-                      <div className="flex gap-2">
-                        <div className="h-6 w-16 bg-muted rounded" />
-                        <div className="h-6 w-12 bg-muted rounded" />
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
+          {/* Finance Section */}
+          <div className="mt-16">
+            <div className="mb-12">
+              <div className="relative">
+                <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#E9EDF5' }}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800">Finance Applications</h2>
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
+                      <ArrowRight className="h-4 w-4 mr-2" />
+                      View More
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {financeApps.slice(0, 12).map((app) => (
+                      <IndustryAppCard
+                        key={app.id}
+                        app={app}
+                        onPreview={(app) => handleAppAction('Preview', app)}
+                        onCustomize={(app) => handleAppAction('Customize', app)}
+                        onRunDeploy={(app) => handleAppAction('Run/Deploy', app)}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute -top-8 left-8 rounded-t-xl px-6 py-2 min-w-fit z-10" style={{ backgroundColor: '#E9EDF5' }}>
+                  <span className="text-sm font-medium text-gray-600 whitespace-nowrap">Finance</span>
+                </div>
               </div>
-            ) : filteredApps.length === 0 ? (
-              <div className="text-center py-20">
-                <h3 className="text-xl font-semibold mb-2">No apps found</h3>
-                <p className="text-muted-foreground mb-6">
-                  {searchQuery || selectedCategory 
-                    ? "Try adjusting your search or filters" 
-                    : "Be the first to publish an AI app!"
-                  }
-                </p>
-                <Button asChild variant="create">
-                  <Link to="/publish">
-                    <Plus className="h-4 w-4 mr-2" />
-                    Create First App
-                  </Link>
-                </Button>
-              </div>
-            ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {paginatedMainApps.map((app) => (
-                  <AppCard
-                    key={app.id}
-                    app={app}
-                    onPreview={(app) => handleAppAction('Preview', app)}
-                    onClone={(app) => handleAppAction('Clone', app)}
-                    onRun={(app) => handleAppAction('Run', app)}
-                    onOpenReplicate={(app) => handleAppAction('Open in Replicate', app)}
-                    onOpenLovable={(app) => handleAppAction('Open in Lovable', app)}
-                    onRemix={(app) => handleAppAction('Remix', app)}
-                  />
-                ))}
-              </div>
-            )}
-          </section>
-
-          {/* Enhanced Pagination */}
-          {totalPages > 1 && (
-            <div className="mt-12">
-              <EnhancedPagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
             </div>
-          )}
+          </div>
+
+          {/* Administration Section */}
+          <div className="mt-16">
+            <div className="mb-12">
+              <div className="relative">
+                <div className="relative rounded-3xl pt-8 pb-8 px-8" style={{ backgroundColor: '#F5F5F5' }}>
+                  <div className="flex justify-between items-center mb-6">
+                    <h2 className="text-2xl font-bold text-gray-800">Administration Applications</h2>
+                    <Button variant="ghost" size="sm" className="text-gray-600 hover:text-gray-800">
+                      <ArrowRight className="h-4 w-4 mr-2" />
+                      View More
+                    </Button>
+                  </div>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                    {administrationApps.slice(0, 12).map((app) => (
+                      <IndustryAppCard
+                        key={app.id}
+                        app={app}
+                        onPreview={(app) => handleAppAction('Preview', app)}
+                        onCustomize={(app) => handleAppAction('Customize', app)}
+                        onRunDeploy={(app) => handleAppAction('Run/Deploy', app)}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div className="absolute -top-8 left-8 rounded-t-xl px-6 py-2 min-w-fit z-10" style={{ backgroundColor: '#F5F5F5' }}>
+                  <span className="text-sm font-medium text-gray-600 whitespace-nowrap">Administration</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </SEOWrapper>

@@ -102,7 +102,7 @@ const PublishPage: React.FC = () => {
     setIsSubmitting(true);
     try {
       const connector = data.replicateOwner && data.replicateModel ? {
-        provider: 'replicate',
+        provider: 'replicate' as const,
         owner: data.replicateOwner,
         model: data.replicateModel,
         version: data.replicateVersion || 'latest',
@@ -117,11 +117,11 @@ const PublishPage: React.FC = () => {
           tagline: data.tagline,
           description: data.description,
           category: data.category,
-          use_cases: selectedUseCases,
-          tech_stack: selectedTechStack,
+          useCases: selectedUseCases,
+          techStack: selectedTechStack,
           license: data.license,
-          thumbnail_url: data.thumbnailUrl || null,
-          readme_markdown: data.readmeMarkdown,
+          thumbnailUrl: data.thumbnailUrl || null,
+          readmeMarkdown: data.readmeMarkdown,
           connector
         });
 

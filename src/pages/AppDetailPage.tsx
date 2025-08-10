@@ -241,9 +241,9 @@ const AppDetailPage: React.FC = () => {
                   <div className="mt-6">
                     <h4 className="font-medium mb-3">Output</h4>
                     <div className="p-4 bg-muted rounded-lg">
-                      {runResult.images ? (
+                     {(runResult as any).images ? (
                         <div className="grid grid-cols-1 gap-4">
-                          {runResult.images.map((url: string, index: number) => (
+                          {(runResult as any).images.map((url: string, index: number) => (
                             <img 
                               key={index}
                               src={url} 
@@ -252,8 +252,8 @@ const AppDetailPage: React.FC = () => {
                             />
                           ))}
                         </div>
-                      ) : runResult.text ? (
-                        <p className="whitespace-pre-wrap">{runResult.text}</p>
+                      ) : (runResult as any).text ? (
+                        <p className="whitespace-pre-wrap">{(runResult as any).text}</p>
                       ) : (
                         <pre className="text-sm overflow-auto">
                           {JSON.stringify(runResult, null, 2)}
