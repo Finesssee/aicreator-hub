@@ -176,7 +176,7 @@ const MySpacePage: React.FC = () => {
               </p>
             </div>
 
-            <Button variant="create" asChild>
+            <Button variant="create-filled" asChild>
               <Link to="/publish">
                 <Plus className="h-4 w-4 mr-2" />
                 Create New App
@@ -184,57 +184,39 @@ const MySpacePage: React.FC = () => {
             </Button>
           </div>
 
-          {/* Cloned & Customized Apps */}
+          {/* All Apps in One Space */}
           <div className="mt-8">
-            <FolderSection title="Cloned & Customized Apps">
-              {myClonedApps.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {myClonedApps.map((app) => (
-                    <AppCard key={app.id} app={app} showOriginal={true} />
+            {[...myOriginalApps, ...myClonedApps].length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {/* Sort by recent work first - using reverse order to show newer items first */}
+                {[...myOriginalApps, ...myClonedApps]
+                  .sort((a, b) => b.id - a.id)
+                  .map((app) => (
+                    <AppCard key={app.id} app={app} showOriginal={!!app.originalApp} />
                   ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <Sparkles className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No cloned apps yet</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Start by exploring and cloning apps from the community
-                  </p>
+              </div>
+            ) : (
+              <div className="text-center py-12">
+                <Sparkles className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
+                <h3 className="text-lg font-semibold mb-2">No apps yet</h3>
+                <p className="text-muted-foreground mb-4">
+                  Start by creating or cloning apps from the community
+                </p>
+                <div className="flex gap-4 justify-center">
                   <Button asChild variant="outline">
                     <Link to="/explore">
                       Browse Apps
                     </Link>
                   </Button>
-                </div>
-              )}
-            </FolderSection>
-          </div>
-
-          {/* Original Apps */}
-          <div className="mt-8">
-            <FolderSection title="My Original Apps">
-              {myOriginalApps.length > 0 ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {myOriginalApps.map((app) => (
-                    <AppCard key={app.id} app={app} />
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-12">
-                  <Code className="h-12 w-12 mx-auto text-muted-foreground mb-4" />
-                  <h3 className="text-lg font-semibold mb-2">No original apps yet</h3>
-                  <p className="text-muted-foreground mb-4">
-                    Create your first AI application from scratch
-                  </p>
-                  <Button asChild variant="create">
+                  <Button asChild variant="create-filled">
                     <Link to="/publish">
                       <Plus className="h-4 w-4 mr-2" />
-                      Create First App
+                      Create App
                     </Link>
                   </Button>
                 </div>
-              )}
-            </FolderSection>
+              </div>
+            )}
           </div>
         </main>
       </div>
