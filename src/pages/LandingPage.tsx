@@ -54,7 +54,7 @@ const LandingPage: React.FC = () => {
 
   return (
     <SEOWrapper>
-      <div className="min-h-screen bg-background">
+      <div className="min-h-screen bg-gradient-organic">
         <div className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 sticky top-0 z-50">
           <div className="container mx-auto px-4 py-3 flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2">
@@ -84,10 +84,15 @@ const LandingPage: React.FC = () => {
                   Build <em className="italic font-thin">AI Apps</em> by AI Apps
                 </h1>
                 <div className="max-w-2xl mx-auto mb-8">
-                  <Input
-                    placeholder="Describe the AI application you want to build..."
-                    className="h-14 text-lg px-6 bg-white/90 backdrop-blur-sm border border-gray-200 shadow-sm"
-                  />
+                  <div className="relative">
+                    <Input
+                      placeholder="Describe the AI application you want to build..."
+                      className="h-14 text-lg px-6 pr-16 bg-white/90 backdrop-blur-sm border border-gray-200 shadow-sm"
+                    />
+                    <Button size="sm" className="absolute right-2 top-1/2 transform -translate-y-1/2 h-10 w-10 p-0">
+                      <ArrowRight className="h-4 w-4" />
+                    </Button>
+                  </div>
                 </div>
                 <Button asChild size="lg" className="text-lg px-8 py-3">
                   <Link to="/explore">Explore All AI Apps</Link>
@@ -135,8 +140,11 @@ const LandingPage: React.FC = () => {
           <section className="py-16 px-4 bg-muted/30">
             <div className="container mx-auto">
               <div className="flex justify-between items-center mb-12">
-                <h2 className="text-3xl font-bold">AI Applications</h2>
-                <Button variant="outline" asChild className="border border-gray-300 hover:border-primary hover:text-primary transition-colors">
+                <div>
+                  <h2 className="text-3xl font-bold">Application Templates</h2>
+                  <p className="text-muted-foreground mt-2">Built by our community</p>
+                </div>
+                <Button variant="outline" asChild className="border border-gray-300 hover:border-primary hover:bg-primary hover:text-white transition-colors">
                   <Link to="/explore">
                     <ArrowRight className="h-4 w-4 mr-2" />
                     View All

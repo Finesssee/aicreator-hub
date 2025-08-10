@@ -51,6 +51,12 @@ All colors MUST be HSL.
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-blue-light)));
     --gradient-hero: linear-gradient(135deg, hsl(var(--brand-blue) / 0.1), hsl(var(--pastel-blue) / 0.8));
+    --gradient-organic: radial-gradient(ellipse at 20% 30%, #E6F0FA 0%, transparent 50%), 
+                        radial-gradient(ellipse at 80% 20%, #99CCFF 0%, transparent 50%), 
+                        radial-gradient(ellipse at 40% 70%, #E6F0FA 0%, transparent 50%), 
+                        radial-gradient(ellipse at 90% 80%, #B3D9FF 0%, transparent 50%), 
+                        radial-gradient(ellipse at 10% 90%, #E6F0FA 0%, transparent 50%), 
+                        linear-gradient(135deg, #F0F8FF 0%, #E6F0FA 100%);
 
     /* Shadows */
     --shadow-soft: 0 4px 20px -2px hsl(var(--brand-blue) / 0.1);
@@ -156,5 +162,9 @@ All colors MUST be HSL.
 
   .gradient-primary {
     background: var(--gradient-primary);
+  }
+
+  .gradient-organic {
+    background: var(--gradient-organic);
   }
 }
