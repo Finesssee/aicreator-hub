@@ -1,4 +1,16 @@
 import { App } from '@/components/ui/app-card';
+import healthcareDiagnosis from '@/assets/healthcare-diagnosis.jpg';
+import medicalImaging from '@/assets/medical-imaging.jpg';
+import medicationChecker from '@/assets/medication-checker.jpg';
+import clinicalNotes from '@/assets/clinical-notes.jpg';
+import investmentPortfolio from '@/assets/investment-portfolio.jpg';
+import fraudDetection from '@/assets/fraud-detection.jpg';
+import creditRisk from '@/assets/credit-risk.jpg';
+import tradingBot from '@/assets/trading-bot.jpg';
+import meetingMinutes from '@/assets/meeting-minutes.jpg';
+import formEmailAutomator from '@/assets/form-email-automator.jpg';
+import documentClassifier from '@/assets/document-classifier.jpg';
+import calendarScheduler from '@/assets/calendar-scheduler.jpg';
 
 export const healthcareApps: App[] = [
   {
@@ -8,7 +20,7 @@ export const healthcareApps: App[] = [
     tagline: 'AI-powered preliminary diagnosis from symptoms',
     description: 'Upload symptoms and patient history to get preliminary diagnosis suggestions',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: healthcareDiagnosis,
     createdAt: '2024-01-15',
     customizationCount: 1247
   },
@@ -19,7 +31,7 @@ export const healthcareApps: App[] = [
     tagline: 'Analyze X-rays, MRIs, and CT scans instantly',
     description: 'AI analysis of medical images for radiologists',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicalImaging,
     createdAt: '2024-01-10',
     customizationCount: 892
   },
@@ -30,7 +42,7 @@ export const healthcareApps: App[] = [
     tagline: 'Check drug interactions and side effects',
     description: 'Prevent harmful drug interactions with AI analysis',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicationChecker,
     createdAt: '2024-01-08',
     customizationCount: 634
   },
@@ -41,7 +53,7 @@ export const healthcareApps: App[] = [
     tagline: 'Auto-generate clinical notes from consultations',
     description: 'Transform consultation recordings into structured clinical notes',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: clinicalNotes,
     createdAt: '2024-01-05',
     customizationCount: 1089
   },
@@ -52,7 +64,7 @@ export const healthcareApps: App[] = [
     tagline: 'Track and analyze patient symptoms over time',
     description: 'Monitor patient progress and symptom patterns',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: healthcareDiagnosis,
     createdAt: '2024-01-03',
     customizationCount: 743
   },
@@ -63,7 +75,7 @@ export const healthcareApps: App[] = [
     tagline: 'Optimize treatment plans based on patient data',
     description: 'AI-driven treatment recommendations',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicalImaging,
     createdAt: '2024-01-01',
     customizationCount: 567
   },
@@ -74,7 +86,7 @@ export const healthcareApps: App[] = [
     tagline: 'Assess patient health risks and prevention strategies',
     description: 'Analyze lifestyle and medical history for risk assessment',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicationChecker,
     createdAt: '2023-12-28',
     customizationCount: 456
   },
@@ -85,7 +97,7 @@ export const healthcareApps: App[] = [
     tagline: 'Smart inventory management for pharmacies',
     description: 'Predict demand and optimize pharmacy stock levels',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: clinicalNotes,
     createdAt: '2023-12-25',
     customizationCount: 328
   },
@@ -96,7 +108,7 @@ export const healthcareApps: App[] = [
     tagline: 'Virtual consultation support and triage',
     description: 'AI assistant for remote patient consultations',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: healthcareDiagnosis,
     createdAt: '2023-12-20',
     customizationCount: 912
   },
@@ -107,7 +119,7 @@ export const healthcareApps: App[] = [
     tagline: 'Analyze medical literature and research papers',
     description: 'Extract insights from medical research and publications',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicalImaging,
     createdAt: '2023-12-18',
     customizationCount: 245
   },
@@ -118,7 +130,7 @@ export const healthcareApps: App[] = [
     tagline: 'Interpret and explain laboratory test results',
     description: 'AI interpretation of blood tests and lab results',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: medicationChecker,
     createdAt: '2023-12-15',
     customizationCount: 678
   },
@@ -129,7 +141,7 @@ export const healthcareApps: App[] = [
     tagline: 'Plan comprehensive patient discharge procedures',
     description: 'Create detailed discharge plans and follow-up schedules',
     category: 'Healthcare',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: clinicalNotes,
     createdAt: '2023-12-12',
     customizationCount: 423
   }
@@ -143,7 +155,7 @@ export const financeApps: App[] = [
     tagline: 'Analyze and optimize investment portfolios',
     description: 'AI-powered portfolio analysis and risk assessment',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: investmentPortfolio,
     createdAt: '2024-01-15',
     customizationCount: 1534
   },
@@ -154,7 +166,7 @@ export const financeApps: App[] = [
     tagline: 'Detect fraudulent transactions in real-time',
     description: 'Machine learning fraud detection for financial institutions',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: fraudDetection,
     createdAt: '2024-01-12',
     customizationCount: 967
   },
@@ -165,7 +177,7 @@ export const financeApps: App[] = [
     tagline: 'Assess credit risk and loan default probability',
     description: 'Evaluate borrower creditworthiness using AI',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: creditRisk,
     createdAt: '2024-01-08',
     customizationCount: 1289
   },
@@ -176,7 +188,7 @@ export const financeApps: App[] = [
     tagline: 'Automated trading strategies and execution',
     description: 'AI-driven trading algorithms for market analysis',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: tradingBot,
     createdAt: '2024-01-05',
     customizationCount: 823
   },
@@ -187,7 +199,7 @@ export const financeApps: App[] = [
     tagline: 'Automatically categorize and track expenses',
     description: 'AI categorization of financial transactions',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: investmentPortfolio,
     createdAt: '2024-01-03',
     customizationCount: 1156
   },
@@ -198,7 +210,7 @@ export const financeApps: App[] = [
     tagline: 'Generate comprehensive financial reports',
     description: 'Automated financial reporting and analysis',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: fraudDetection,
     createdAt: '2024-01-01',
     customizationCount: 745
   },
@@ -209,7 +221,7 @@ export const financeApps: App[] = [
     tagline: 'Automate insurance claim processing and validation',
     description: 'AI-powered insurance claim analysis and approval',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: creditRisk,
     createdAt: '2023-12-28',
     customizationCount: 634
   },
@@ -220,7 +232,7 @@ export const financeApps: App[] = [
     tagline: 'Optimize tax strategies and deductions',
     description: 'AI tax planning and optimization recommendations',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: tradingBot,
     createdAt: '2023-12-25',
     customizationCount: 892
   },
@@ -231,7 +243,7 @@ export const financeApps: App[] = [
     tagline: 'Create and manage personalized budgets',
     description: 'Smart budgeting with AI-powered insights',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: investmentPortfolio,
     createdAt: '2023-12-22',
     customizationCount: 1078
   },
@@ -242,7 +254,7 @@ export const financeApps: App[] = [
     tagline: 'Analyze market sentiment from news and social media',
     description: 'AI analysis of market sentiment and trends',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: fraudDetection,
     createdAt: '2023-12-20',
     customizationCount: 567
   },
@@ -253,7 +265,7 @@ export const financeApps: App[] = [
     tagline: 'AI financial advisor for investment guidance',
     description: 'Conversational AI for financial advice and planning',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: creditRisk,
     createdAt: '2023-12-18',
     customizationCount: 1345
   },
@@ -264,7 +276,7 @@ export const financeApps: App[] = [
     tagline: 'Monitor and ensure regulatory compliance',
     description: 'AI-powered compliance monitoring and reporting',
     category: 'Finance',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: tradingBot,
     createdAt: '2023-12-15',
     customizationCount: 456
   }
@@ -278,7 +290,7 @@ export const administrationApps: App[] = [
     tagline: 'Transform meeting transcripts into structured minutes',
     description: 'Paste a meeting transcript or notes; get concise minutes with owners, due dates, and decisions.',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: meetingMinutes,
     createdAt: '2024-01-15',
     customizationCount: 1876
   },
@@ -289,7 +301,7 @@ export const administrationApps: App[] = [
     tagline: 'Extract data from PDFs and generate standardized emails',
     description: 'Upload a filled PDF form or email thread; extract key fields; generate a standardized email or help-desk ticket.',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: formEmailAutomator,
     createdAt: '2024-01-12',
     customizationCount: 1234
   },
@@ -300,7 +312,7 @@ export const administrationApps: App[] = [
     tagline: 'Automatically categorize and organize documents',
     description: 'AI-powered document classification and filing system',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: documentClassifier,
     createdAt: '2024-01-10',
     customizationCount: 987
   },
@@ -311,7 +323,7 @@ export const administrationApps: App[] = [
     tagline: 'Intelligent meeting scheduling and calendar management',
     description: 'Automatically schedule meetings and manage calendars',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: calendarScheduler,
     createdAt: '2024-01-08',
     customizationCount: 1567
   },
@@ -322,7 +334,7 @@ export const administrationApps: App[] = [
     tagline: 'Process and validate expense reports automatically',
     description: 'Extract data from receipts and generate expense reports',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: formEmailAutomator,
     createdAt: '2024-01-05',
     customizationCount: 823
   },
@@ -333,7 +345,7 @@ export const administrationApps: App[] = [
     tagline: 'Analyze contracts and identify key terms',
     description: 'AI-powered contract review and risk assessment',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: documentClassifier,
     createdAt: '2024-01-03',
     customizationCount: 645
   },
@@ -344,7 +356,7 @@ export const administrationApps: App[] = [
     tagline: 'Generate professional email responses automatically',
     description: 'AI-powered email drafting and response suggestions',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: meetingMinutes,
     createdAt: '2024-01-01',
     customizationCount: 1298
   },
@@ -355,7 +367,7 @@ export const administrationApps: App[] = [
     tagline: 'Track and manage office inventory efficiently',
     description: 'Smart inventory management for office supplies',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: formEmailAutomator,
     createdAt: '2023-12-28',
     customizationCount: 456
   },
@@ -366,7 +378,7 @@ export const administrationApps: App[] = [
     tagline: 'Streamline new employee onboarding process',
     description: 'Automated onboarding workflows and documentation',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: documentClassifier,
     createdAt: '2023-12-25',
     customizationCount: 734
   },
@@ -377,7 +389,7 @@ export const administrationApps: App[] = [
     tagline: 'Generate and customize company policy documents',
     description: 'AI-assisted policy creation and compliance checking',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: meetingMinutes,
     createdAt: '2023-12-22',
     customizationCount: 567
   },
@@ -388,7 +400,7 @@ export const administrationApps: App[] = [
     tagline: 'Assist in creating comprehensive performance reviews',
     description: 'AI-powered performance evaluation and feedback generation',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: calendarScheduler,
     createdAt: '2023-12-20',
     customizationCount: 892
   },
@@ -399,7 +411,7 @@ export const administrationApps: App[] = [
     tagline: 'Analyze and optimize business workflows',
     description: 'Identify bottlenecks and improve process efficiency',
     category: 'Administration',
-    thumbnailUrl: '/placeholder.svg',
+    thumbnailUrl: documentClassifier,
     createdAt: '2023-12-18',
     customizationCount: 678
   }

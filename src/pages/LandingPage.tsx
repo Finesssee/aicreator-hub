@@ -4,7 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { SEOWrapper } from '@/components/seo/SEOWrapper';
 import { Navigation } from '@/components/layout/Navigation';
-import { Search, Copy, Rocket, Star } from 'lucide-react';
+import { Search, Copy, Rocket, Star, ArrowRight } from 'lucide-react';
+import { IndustryAppCard } from '@/components/ui/industry-app-card';
+import { Input } from '@/components/ui/input';
+import { mixedApps } from '@/data/mixedApps';
 import sarahImg from '@/assets/testimonial-sarah.jpg';
 import alexImg from '@/assets/testimonial-alex.jpg';
 import mayaImg from '@/assets/testimonial-maya.jpg';
@@ -68,21 +71,6 @@ const LandingPage: React.FC = () => {
               >
                 Explore
               </Link>
-              
-              <Link 
-                to="/my-space" 
-                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-              >
-                My Space
-              </Link>
-              
-              <Button variant="login" size="sm">
-                Log In
-              </Button>
-              
-              <Button variant="default" size="sm">
-                Sign Up
-              </Button>
             </div>
           </div>
         </div>
@@ -91,13 +79,16 @@ const LandingPage: React.FC = () => {
         <main>
           <section className="py-20 px-4">
             <div className="container mx-auto text-center">
-              <div className="max-w-4xl mx-auto gradient-hero rounded-3xl p-12 soft-shadow">
-                <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
+              <div className="max-w-4xl mx-auto bg-background rounded-3xl p-12 shadow-sm border border-border/20">
+                <h1 className="text-5xl md:text-6xl font-bold mb-8 text-foreground">
                   Build <em className="italic font-thin">AI Apps</em> by AI Apps
                 </h1>
-                <p className="text-xl md:text-2xl text-muted-foreground mb-8">
-                  Browse, Clone, and Deploy in One Click
-                </p>
+                <div className="max-w-2xl mx-auto mb-8">
+                  <Input
+                    placeholder="Describe the AI application you want to build..."
+                    className="h-14 text-lg px-6 bg-white/90 backdrop-blur-sm border border-gray-200 shadow-sm"
+                  />
+                </div>
                 <Button asChild size="lg" className="text-lg px-8 py-3">
                   <Link to="/explore">Explore All AI Apps</Link>
                 </Button>
@@ -140,18 +131,39 @@ const LandingPage: React.FC = () => {
             </div>
           </section>
 
-          {/* How it Works */}
+          {/* Mixed Applications */}
           <section className="py-16 px-4 bg-muted/30">
             <div className="container mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">How it Works</h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {steps.map((step, index) => (
-                  <div key={index} className="text-center">
-                    <div className="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-4">
-                      <step.icon className="h-8 w-8 text-primary-foreground" />
+              <div className="flex justify-between items-center mb-12">
+                <h2 className="text-3xl font-bold">AI Applications</h2>
+                <Button variant="outline" asChild className="border border-gray-300 hover:border-primary hover:text-primary transition-colors">
+                  <Link to="/explore">
+                    <ArrowRight className="h-4 w-4 mr-2" />
+                    View All
+                  </Link>
+                </Button>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {mixedApps.map((app) => (
+                  <div key={app.id} className="relative">
+                    <IndustryAppCard
+                      app={app}
+                      onPreview={(app) => console.log('Preview', app.name)}
+                      onCustomize={(app) => console.log('Customize', app.name)}
+                      onRunDeploy={(app) => console.log('Run/Deploy', app.name)}
+                    />
+                    {/* Industry badge */}
+                    <div 
+                      className={`absolute -top-2 -right-2 px-2 py-1 rounded-full text-xs font-medium ${
+                        app.category === 'Healthcare' 
+                          ? 'bg-emerald-100 text-emerald-800' 
+                          : app.category === 'Finance' 
+                          ? 'bg-blue-100 text-blue-800' 
+                          : 'bg-gray-100 text-gray-800'
+                      }`}
+                    >
+                      {app.category}
                     </div>
-                    <h3 className="text-xl font-semibold mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
                   </div>
                 ))}
               </div>
