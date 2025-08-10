@@ -9,6 +9,7 @@ import MySpacePage from "./pages/MySpacePage";
 import PublishPage from "./pages/PublishPage";
 import AppDetailPage from "./pages/AppDetailPage";
 import NotFound from "./pages/NotFound";
+import DevPlayground from "./pages/DevPlayground";
 import AuthPage from "./pages/AuthPage";
 import { AuthProvider } from "./contexts/AuthContext";
 import { ProtectedRoute } from "./components/auth/ProtectedRoute";
@@ -37,6 +38,7 @@ const App = () => (
             } />
             <Route path="/app/:slug" element={<AppDetailPage />} />
             <Route path="/auth" element={<AuthPage />} />
+            <Route path="/dev" element={<DevPlayground />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
