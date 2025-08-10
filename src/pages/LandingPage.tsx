@@ -79,7 +79,7 @@ const LandingPage: React.FC = () => {
         <main>
           <section className="py-20 px-4">
             <div className="container mx-auto text-center">
-              <div className="max-w-4xl mx-auto bg-background rounded-3xl p-12 shadow-sm border border-border/20">
+              <div className="max-w-4xl mx-auto gradient-hero-card rounded-3xl p-12 shadow-sm border border-border/20">
                 <h1 className="text-5xl md:text-6xl font-bold mb-8 text-foreground">
                   Build <em className="italic font-thin">AI Apps</em> by AI Apps
                 </h1>
