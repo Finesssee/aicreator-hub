@@ -31,8 +31,11 @@ All colors MUST be HSL.
     --secondary: 210 100% 92%;
     --secondary-foreground: 220 20% 14%;
 
-    --muted: 210 40% 96%;
+    --muted: 220 60% 94%;
     --muted-foreground: 220 15% 46%;
+    
+    /* Folder section specific background */
+    --folder-bg: 220 70% 92%;
 
     --accent: 220 100% 60%;
     --accent-foreground: 0 0% 100%;
@@ -89,6 +92,9 @@ All colors MUST be HSL.
 
     --muted: 220 27% 16%;
     --muted-foreground: 220 15% 65%;
+    
+    /* Folder section specific background for dark mode */
+    --folder-bg: 220 40% 18%;
 
     --accent: 220 100% 70%;
     --accent-foreground: 220 27% 8%;
