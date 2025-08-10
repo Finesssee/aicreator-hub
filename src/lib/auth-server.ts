@@ -16,5 +16,7 @@ export const auth = betterAuth({
     enabled: true,
   },
   secret: process.env.BETTER_AUTH_SECRET || "your-secret-key-here-change-in-production",
-  baseURL: process.env.BETTER_AUTH_URL || "http://localhost:8080",
+  baseURL: (process.env.NODE_ENV === 'production' && process.env.VERCEL_URL)
+    ? `https://${process.env.VERCEL_URL}`
+    : process.env.BETTER_AUTH_URL || "http://localhost:8080",
 });
