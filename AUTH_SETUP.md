@@ -9,7 +9,7 @@ To run the application with authentication:
 npm install
 
 # Initialize the database (first time only)
-node init-db.js
+node init-betterauth-db.js
 
 # Start both servers
 npm run dev:all
