@@ -221,7 +221,7 @@ const ExplorePage: React.FC = () => {
                     : "Be the first to publish an AI app!"
                   }
                 </p>
-                <Button asChild>
+                <Button asChild variant="create">
                   <Link to="/publish">
                     <Plus className="h-4 w-4 mr-2" />
                     Create First App
