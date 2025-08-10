@@ -175,7 +175,7 @@ const ExplorePage: React.FC = () => {
           {/* Trending Section with spacing */}
           <div className="mt-16">
             {trendingApps.length > 0 && (
-              <FolderSection title="Most Trendy AI Applications">
+              <FolderSection title="Most Trendy AI Applications" variant="trending">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                   {trendingApps.map((app) => (
                     <AppCard

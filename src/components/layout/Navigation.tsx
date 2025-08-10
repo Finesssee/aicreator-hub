@@ -37,6 +37,15 @@ export const Navigation: React.FC<NavigationProps> = ({ showCreateButton = true 
             Explore
           </Link>
           
+          <Link 
+            to="/my-space" 
+            className={`text-sm font-medium transition-colors hover:text-primary ${
+              location.pathname === '/my-space' ? 'text-primary' : 'text-muted-foreground'
+            }`}
+          >
+            My Space
+          </Link>
+          
           <div className="flex items-center space-x-2">
             <Button variant="login" size="sm">
               Log in

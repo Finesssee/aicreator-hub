@@ -14,6 +14,7 @@ All colors MUST be HSL.
     --brand-blue-dark: 220 85% 47%;
     --pastel-blue: 210 100% 92%;
     --accent-blue: 220 100% 60%;
+    --trending-blue: 210 100% 88%;
     
     /* Core colors using brand palette */
     --background: 0 0% 100%;
@@ -33,6 +34,7 @@ All colors MUST be HSL.
 
     --muted: 210 40% 96%;
     --muted-foreground: 220 15% 46%;
+    --trending-background: 210 100% 88%;
 
     --accent: 220 100% 60%;
     --accent-foreground: 0 0% 100%;
@@ -89,6 +91,7 @@ All colors MUST be HSL.
 
     --muted: 220 27% 16%;
     --muted-foreground: 220 15% 65%;
+    --trending-background: 210 60% 25%;
 
     --accent: 220 100% 70%;
     --accent-foreground: 220 27% 8%;
