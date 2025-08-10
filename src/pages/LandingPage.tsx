@@ -69,13 +69,6 @@ const LandingPage: React.FC = () => {
                 Explore
               </Link>
               
-              <Link 
-                to="/my-space" 
-                className="text-sm font-medium transition-colors hover:text-primary text-muted-foreground"
-              >
-                My Space
-              </Link>
-              
               <Button variant="login" size="sm">
                 Log In
               </Button>
@@ -93,7 +86,7 @@ const LandingPage: React.FC = () => {
             <div className="container mx-auto text-center">
               <div className="max-w-4xl mx-auto gradient-hero rounded-3xl p-12 soft-shadow">
                 <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
-                  Build <em className="italic font-thin">AI Apps</em> by AI Apps
+                  Build <em className="not-italic font-light">AI Apps</em> by AI Apps
                 </h1>
                 <p className="text-xl md:text-2xl text-muted-foreground mb-8">
                   Browse, Clone, and Deploy in One Click
