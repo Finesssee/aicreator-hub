@@ -124,18 +124,18 @@ const mockApps: App[] = [
   // Generate more realistic apps for pagination
   ...Array.from({ length: 44 }, (_, i) => {
     const appTypes = [
-      { name: 'Voice Clone Studio', tagline: 'Create realistic voice clones with AI', category: 'Audio & Music' },
-      { name: 'Smart Document Parser', tagline: 'Extract data from documents using AI', category: 'Text & Content' },
-      { name: 'AI Video Editor', tagline: 'Automated video editing with machine learning', category: 'Image & Video' },
-      { name: 'Sentiment Analyzer Pro', tagline: 'Real-time sentiment analysis for social media', category: 'Text & Content' },
-      { name: 'Neural Style Transfer', tagline: 'Transform photos with artistic AI styles', category: 'Image & Video' },
-      { name: 'AutoCode Generator', tagline: 'Generate production-ready code from descriptions', category: 'Developer Tools & Automation' },
-      { name: 'AI Music Composer', tagline: 'Create original music with artificial intelligence', category: 'Audio & Music' },
-      { name: 'Smart Chatbot Builder', tagline: 'Build intelligent chatbots without coding', category: 'Chat & Agents' },
-      { name: 'Photo Restoration AI', tagline: 'Restore old photos using advanced AI', category: 'Image & Video' },
-      { name: 'Language Translator Plus', tagline: 'Multi-language translation with context awareness', category: 'Text & Content' },
-      { name: 'AI Game Generator', tagline: 'Create simple games using AI assistance', category: 'Creative & Fun' },
-      { name: 'Smart Email Assistant', tagline: 'AI-powered email composition and management', category: 'Developer Tools & Automation' }
+      { name: 'Voice Clone Studio', tagline: 'Create realistic voice clones with AI', category: 'Audio & Music', image: '/src/assets/app-music-ai.jpg' },
+      { name: 'Smart Document Parser', tagline: 'Extract data from documents using AI', category: 'Text & Content', image: '/src/assets/app-text-analyzer.jpg' },
+      { name: 'AI Video Editor', tagline: 'Automated video editing with machine learning', category: 'Image & Video', image: '/src/assets/app-video-editor.jpg' },
+      { name: 'Sentiment Analyzer Pro', tagline: 'Real-time sentiment analysis for social media', category: 'Text & Content', image: '/src/assets/app-text-analyzer.jpg' },
+      { name: 'Neural Style Transfer', tagline: 'Transform photos with artistic AI styles', category: 'Image & Video', image: '/src/assets/app-image-generator.jpg' },
+      { name: 'AutoCode Generator', tagline: 'Generate production-ready code from descriptions', category: 'Developer Tools & Automation', image: '/src/assets/app-code-assistant.jpg' },
+      { name: 'AI Music Composer', tagline: 'Create original music with artificial intelligence', category: 'Audio & Music', image: '/src/assets/app-music-ai.jpg' },
+      { name: 'Smart Chatbot Builder', tagline: 'Build intelligent chatbots without coding', category: 'Chat & Agents', image: '/src/assets/app-chatgpt-clone.jpg' },
+      { name: 'Photo Restoration AI', tagline: 'Restore old photos using advanced AI', category: 'Image & Video', image: '/src/assets/app-image-generator.jpg' },
+      { name: 'Language Translator Plus', tagline: 'Multi-language translation with context awareness', category: 'Text & Content', image: '/src/assets/app-text-analyzer.jpg' },
+      { name: 'AI Game Generator', tagline: 'Create simple games using AI assistance', category: 'Creative & Fun', image: '/src/assets/app-code-assistant.jpg' },
+      { name: 'Smart Email Assistant', tagline: 'AI-powered email composition and management', category: 'Developer Tools & Automation', image: '/src/assets/app-code-assistant.jpg' }
     ];
     
     const appType = appTypes[i % appTypes.length];
@@ -158,7 +158,7 @@ const mockApps: App[] = [
       useCases: ['AI Processing', 'Automation', 'Enterprise Solutions', 'Productivity'],
       techStack: techStacks[i % techStacks.length],
       license: 'MIT',
-      thumbnailUrl: '/placeholder.svg',
+      thumbnailUrl: appType.image,
       createdAt: new Date(2024, 0, 12 - Math.floor(i / 10), 10 + (i % 12), i % 60).toISOString(),
       customizationCount: Math.floor(Math.random() * 2000) + 150
     };

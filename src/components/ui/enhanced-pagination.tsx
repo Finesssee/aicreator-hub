@@ -47,8 +47,8 @@ export const EnhancedPagination: React.FC<EnhancedPaginationProps> = ({
 
   return (
     <div className={cn("flex justify-center items-center gap-2", className)}>
-      {/* Previous Button - show if there are pages before current sequence */}
-      {shouldShowPrevious() && (
+      {/* Previous Button - always visible if currentPage > 1 */}
+      {currentPage > 1 && (
         <Button
           variant="outline"
           size="sm"
@@ -72,8 +72,8 @@ export const EnhancedPagination: React.FC<EnhancedPaginationProps> = ({
         </Button>
       ))}
 
-      {/* Next Button - show if there are pages after current sequence */}
-      {shouldShowNext() && (
+      {/* Next Button - always visible if currentPage < totalPages */}
+      {currentPage < totalPages && (
         <Button
           variant="outline"
           size="sm"

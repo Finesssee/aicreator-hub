@@ -173,7 +173,7 @@ const ExplorePage: React.FC = () => {
           )}
 
           {/* Trending Section with spacing */}
-          <div className="mt-8">
+          <div className="mt-16">
             {trendingApps.length > 0 && (
               <FolderSection title="Most Trendy AI Applications">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
