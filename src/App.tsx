@@ -9,6 +9,9 @@ import MySpacePage from "./pages/MySpacePage";
 import PublishPage from "./pages/PublishPage";
 import AppDetailPage from "./pages/AppDetailPage";
 import NotFound from "./pages/NotFound";
+import AuthPage from "./pages/AuthPage";
+import { AuthProvider } from "./contexts/AuthContext";
+import { ProtectedRoute } from "./components/auth/ProtectedRoute";
 
 const queryClient = new QueryClient();
 
@@ -18,15 +21,26 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/explore" element={<ExplorePage />} />
-          <Route path="/my-space" element={<MySpacePage />} />
-          <Route path="/publish" element={<PublishPage />} />
-          <Route path="/app/:slug" element={<AppDetailPage />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/explore" element={<ExplorePage />} />
+            <Route path="/my-space" element={
+              <ProtectedRoute>
+                <MySpacePage />
+              </ProtectedRoute>
+            } />
+            <Route path="/publish" element={
+              <ProtectedRoute>
+                <PublishPage />
+              </ProtectedRoute>
+            } />
+            <Route path="/app/:slug" element={<AppDetailPage />} />
+            <Route path="/auth" element={<AuthPage />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
