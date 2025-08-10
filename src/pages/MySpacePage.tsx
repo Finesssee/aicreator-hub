@@ -9,8 +9,20 @@ import { Navigation } from '@/components/layout/Navigation';
 import { ExternalLink, Share2, Play, Code, Sparkles, Plus, Star } from 'lucide-react';
 import { toast } from 'sonner';
 
+interface MyApp {
+  id: number;
+  name: string;
+  tagline: string;
+  description: string;
+  image: string;
+  category: string;
+  tags: string[];
+  isPublic: boolean;
+  originalApp: string | null;
+}
+
 // Sample apps data
-const myClonedApps = [
+const myClonedApps: MyApp[] = [
   {
     id: 1,
     name: "Custom Chat Assistant",
@@ -35,7 +47,7 @@ const myClonedApps = [
   }
 ];
 
-const myOriginalApps = [
+const myOriginalApps: MyApp[] = [
   {
     id: 3,
     name: "Task Manager Pro",
@@ -53,7 +65,7 @@ const MySpacePage: React.FC = () => {
   const [hoveredApp, setHoveredApp] = useState<number | null>(null);
   const [activeCategory, setActiveCategory] = useState<'all' | 'original' | 'customized'>('all');
 
-  const handleShare = (app: any, e: React.MouseEvent) => {
+  const handleShare = (app: MyApp, e: React.MouseEvent) => {
     e.stopPropagation();
     if (app.isPublic) {
       toast.success(`${app.name} is already shared publicly`);
@@ -63,7 +75,7 @@ const MySpacePage: React.FC = () => {
     }
   };
 
-  const handleOpenInEditor = (app: any, editor: string) => {
+  const handleOpenInEditor = (app: MyApp, editor: string) => {
     const url = editor === 'lovable' 
       ? `https://lovable.dev/editor/${app.id}`
       : `https://cursor.sh/project/${app.id}`;
@@ -78,7 +90,7 @@ const MySpacePage: React.FC = () => {
     return true;
   });
 
-  const AppCard = ({ app, showOriginal = false }: { app: any, showOriginal?: boolean }) => (
+  const AppCard = ({ app, showOriginal = false }: { app: MyApp; showOriginal?: boolean }) => (
     <Card 
       className="group relative overflow-hidden hover:shadow-lg transition-all duration-300 cursor-pointer"
       onMouseEnter={() => setHoveredApp(app.id)}

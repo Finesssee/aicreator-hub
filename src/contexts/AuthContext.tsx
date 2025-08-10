@@ -1,8 +1,9 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 import { useSession } from '@/lib/auth-client';
+import type { AuthSession } from '@/lib/auth-client';
 
 interface AuthContextType {
-  session: any;
+  session: AuthSession | null;
   isLoading: boolean;
   isAuthenticated: boolean;
 }

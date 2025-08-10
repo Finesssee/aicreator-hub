@@ -3,8 +3,29 @@ import { useEffect, useState } from "react";
 // BetterAuth client configuration
 const AUTH_BASE_URL = import.meta.env.VITE_AUTH_URL || "http://localhost:5001";
 
+export interface AuthUser {
+  id: string;
+  email: string;
+  name?: string;
+}
+
+export interface AuthSession {
+  user: AuthUser;
+  token?: string;
+}
+
+export interface AuthError {
+  message: string;
+}
+
+export interface AuthResponse {
+  user?: AuthUser;
+  token?: string;
+  error?: AuthError;
+}
+
 // Helper function to make auth requests
-async function authFetch(endpoint: string, options: RequestInit = {}) {
+async function authFetch<TResponse>(endpoint: string, options: RequestInit = {}): Promise<TResponse> {
   const url = `${AUTH_BASE_URL}/api/auth${endpoint}`;
   const response = await fetch(url, {
     ...options,
@@ -12,88 +33,89 @@ async function authFetch(endpoint: string, options: RequestInit = {}) {
       'Content-Type': 'application/json',
       ...options.headers,
     },
-    credentials: 'include', // Important for cookies
+    credentials: 'include',
   });
-  
-  const data = await response.json().catch(() => null);
-  
+
+  const data = (await response.json().catch(() => null)) as TResponse | null;
+
   if (!response.ok) {
-    throw new Error(data?.message || `Request failed with status ${response.status}`);
+    const message = (data as { message?: string } | null)?.message || `Request failed with status ${response.status}`;
+    throw new Error(message);
   }
-  
-  return data;
+
+  return (data as TResponse) ?? ({} as TResponse);
 }
 
 // Store for current session
-let currentSession: any = null;
-const sessionListeners = new Set<(session: any) => void>();
+let currentSession: AuthSession | null = null;
+const sessionListeners = new Set<(session: AuthSession | null) => void>();
 
 // Function to update session and notify listeners
-function updateSession(session: any) {
+function updateSession(session: AuthSession | null): void {
   currentSession = session;
   sessionListeners.forEach(listener => listener(session));
 }
 
 // Export auth methods
 export const signIn = {
-  email: async ({ email, password }: { email: string; password: string }) => {
+  email: async ({ email, password }: { email: string; password: string }): Promise<AuthResponse> => {
     try {
-      const data = await authFetch('/sign-in/email', {
+      const data = await authFetch<AuthResponse>('/sign-in/email', {
         method: 'POST',
         body: JSON.stringify({ email, password }),
       });
-      
-      // Update session after successful login
+
       if (data.user) {
         updateSession({ user: data.user, token: data.token });
       }
-      
+
       return data;
-    } catch (error: any) {
-      return { error: { message: error.message || "Failed to sign in" } };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to sign in";
+      return { error: { message } };
     }
   },
 };
 
 export const signUp = {
-  email: async ({ email, password, name }: { email: string; password: string; name: string }) => {
+  email: async ({ email, password, name }: { email: string; password: string; name: string }): Promise<AuthResponse> => {
     try {
-      const data = await authFetch('/sign-up/email', {
+      const data = await authFetch<AuthResponse>('/sign-up/email', {
         method: 'POST',
         body: JSON.stringify({ email, password, name }),
       });
-      
-      // Update session after successful signup
+
       if (data.user) {
         updateSession({ user: data.user, token: data.token });
       }
-      
+
       return data;
-    } catch (error: any) {
-      return { error: { message: error.message || "Failed to sign up" } };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Failed to sign up";
+      return { error: { message } };
     }
   },
 };
 
-export const signOut = async () => {
+export const signOut = async (): Promise<{ error: AuthError | null }> => {
   try {
-    await authFetch('/sign-out', {
+    await authFetch<null>('/sign-out', {
       method: 'POST',
     });
-    
-    // Clear session after signout
+
     updateSession(null);
-    
+
     return { error: null };
-  } catch (error: any) {
-    return { error: { message: error.message || "Failed to sign out" } };
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "Failed to sign out";
+    return { error: { message } };
   }
 };
 
 // Function to get current session
-async function getSession() {
+async function getSession(): Promise<AuthSession | null> {
   try {
-    const data = await authFetch('/session', {
+    const data = await authFetch<AuthSession>('/session', {
       method: 'GET',
     });
     return data;
@@ -103,22 +125,22 @@ async function getSession() {
 }
 
 // Custom hook for session management
-export const useSession = () => {
-  const [session, setSession] = useState<any>(currentSession);
-  const [isPending, setIsPending] = useState(true);
+export const useSession = (): { data: AuthSession | null; isPending: boolean } => {
+  const [session, setSession] = useState<AuthSession | null>(currentSession);
+  const [isPending, setIsPending] = useState<boolean>(true);
 
   useEffect(() => {
-    // Subscribe to session changes
     sessionListeners.add(setSession);
-    
-    // Get initial session if not already loaded
+
     if (!currentSession) {
-      getSession().then((data) => {
-        updateSession(data);
-        setIsPending(false);
-      }).catch(() => {
-        setIsPending(false);
-      });
+      getSession()
+        .then((data) => {
+          updateSession(data);
+          setIsPending(false);
+        })
+        .catch(() => {
+          setIsPending(false);
+        });
     } else {
       setIsPending(false);
     }

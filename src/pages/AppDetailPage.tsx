@@ -13,11 +13,16 @@ import { useQuery } from '@tanstack/react-query';
 import { supabase, type App } from '@/lib/supabase';
 import { toast } from 'sonner';
 
+type RunResult =
+  | { images: string[] }
+  | { text: string }
+  | { result: string; processing_time: string; status: 'completed' };
+
 const AppDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const [runInputs, setRunInputs] = useState<Record<string, any>>({});
+  const [runInputs, setRunInputs] = useState<Record<string, string>>({});
   const [isRunning, setIsRunning] = useState(false);
-  const [runResult, setRunResult] = useState<any>(null);
+  const [runResult, setRunResult] = useState<RunResult | null>(null);
 
   // Fetch app details
   const { data: apps = [], isLoading } = useQuery({
@@ -47,7 +52,7 @@ const AppDetailPage: React.FC = () => {
       await new Promise(resolve => setTimeout(resolve, 2000));
       
       // Mock response based on app type
-      let mockResult;
+      let mockResult: RunResult;
       if (app.category === 'Image & Video') {
         mockResult = {
           images: ['https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=512&h=512&fit=crop']

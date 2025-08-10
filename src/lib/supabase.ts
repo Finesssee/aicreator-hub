@@ -1,6 +1,19 @@
 // Mock Supabase client for demo purposes
 // In a real implementation, this would be replaced with actual Supabase integration
 
+export type JsonPrimitive = string | number | boolean | null;
+export type JsonValue = JsonPrimitive | JsonValue[] | { [key: string]: JsonValue };
+
+export type ConnectorDefaultInputs = Record<string, string | number | boolean | null>;
+export interface ReplicateConnector {
+  provider: 'replicate';
+  owner: string;
+  model: string;
+  version?: string;
+  defaultInputs?: ConnectorDefaultInputs;
+}
+export type Connector = ReplicateConnector;
+
 export interface App {
   id: string;
   slug: string;
@@ -14,7 +27,7 @@ export interface App {
   license?: string;
   thumbnailUrl?: string;
   readmeMarkdown?: string;
-  connector?: any;
+  connector?: Connector;
   createdAt: string;
   updatedAt?: string;
   customizationCount?: number;
@@ -24,8 +37,8 @@ export interface Run {
   id: string;
   app_id: string;
   status: 'pending' | 'running' | 'succeeded' | 'failed';
-  input_json?: any;
-  output_json?: any;
+  input_json?: JsonValue;
+  output_json?: JsonValue;
   logs?: string;
   external_run_id?: string;
   created_at: string;
@@ -171,7 +184,7 @@ export const supabase = {
     select: (columns = '*') => ({
       order: (column: string, options: { ascending: boolean } = { ascending: true }) => ({
         or: (query: string) => ({
-          eq: (column: string, value: any) => ({
+          eq: (column: string, value: App[keyof App]) => ({
             range: (from: number, to: number) => 
               Promise.resolve({ 
                 data: mockApps.slice(from, to + 1), 
@@ -184,7 +197,7 @@ export const supabase = {
               error: null 
             })
         }),
-        eq: (column: string, value: any) => ({
+        eq: (column: string, value: App[keyof App]) => ({
           range: (from: number, to: number) => {
             const filtered = mockApps.filter(app => app[column as keyof App] === value);
             return Promise.resolve({ 
@@ -206,7 +219,7 @@ export const supabase = {
             error: null 
           })
       }),
-      eq: (column: string, value: any) => 
+      eq: (column: string, value: App[keyof App]) => 
         Promise.resolve({ 
           data: mockApps.filter(app => app[column as keyof App] === value), 
           error: null 
@@ -217,20 +230,20 @@ export const supabase = {
           error: null 
         })
     }),
-    insert: (data: any) => {
+    insert: (data: Partial<App>) => {
       const newApp: App = {
         id: (mockApps.length + 1).toString(),
-        slug: data.slug || '',
-        name: data.name || '',
-        tagline: data.tagline || '',
+        slug: data.slug ?? '',
+        name: data.name ?? '',
+        tagline: data.tagline ?? '',
         description: data.description,
-        category: data.category || '',
-        useCases: data.use_cases || [],
-        techStack: data.tech_stack || [],
-        tags: data.tags || [],
-        license: data.license || 'MIT',
-        thumbnailUrl: data.thumbnail_url,
-        readmeMarkdown: data.readme_markdown,
+        category: data.category ?? '',
+        useCases: data.useCases ?? [],
+        techStack: data.techStack ?? [],
+        tags: data.tags ?? [],
+        license: data.license ?? 'MIT',
+        thumbnailUrl: data.thumbnailUrl,
+        readmeMarkdown: data.readmeMarkdown,
         connector: data.connector,
         createdAt: new Date().toISOString()
       };

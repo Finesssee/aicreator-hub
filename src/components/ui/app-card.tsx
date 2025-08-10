@@ -6,6 +6,16 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import { MoreVertical, Play, Copy, ExternalLink, Edit } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
+export type ConnectorDefaultInputs = Record<string, string | number | boolean | null>;
+export interface ReplicateConnector {
+  provider: 'replicate';
+  owner: string;
+  model: string;
+  version?: string;
+  defaultInputs?: ConnectorDefaultInputs;
+}
+export type Connector = ReplicateConnector;
+
 export interface App {
   id: string;
   slug: string;
@@ -19,7 +29,7 @@ export interface App {
   license?: string;
   thumbnailUrl?: string;
   readmeMarkdown?: string;
-  connector?: any;
+  connector?: Connector;
   createdAt: string;
   customizationCount?: number;
 }
